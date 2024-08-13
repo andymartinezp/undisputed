@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Undisputed Clothing</title>
+    <script src="admin.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="mostrarSeccion('usuarios')">Administrar Usuarios</a></li>
+                <li><a href="#" onclick="mostrarSeccion('productos')">Administrar Productos</a></li>
+                <li><a href="#" onclick="mostrarSeccion('dinamicas')">Administrar Dinámicas</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="usuarios" class="seccion">
+            <h2>Gestión de Usuarios</h2>
+            <form id="formAgregarUsuario">
+                <label for="nuevoMail">Mail:</label>
+                <input type="text" id="nuevoMail" required>
+                <label for="nuevaContraseña">Contraseña:</label>
+                <input type="password" id="nuevaContraseña" required>
+                <label for="nuevoRol">Rol:</label>
+                <select id="nuevoRol" required>
+                    <option value="1">Administrador</option>
+                    <option value="2">Cliente</option>
+                </select>
+                <button type="button" onclick="agregarUsuario()">Añadir Usuario</button>
+            </form>
+            <form id="formEditarUsuario">
+                <label for="editarMail">Seleccionar Usuario:</label>
+                <select id="editarMail">
+                    
+                </select>
+                <label for="editarNuevaContraseña">Nueva Contraseña:</label>
+                <input type="password" id="editarNuevaContraseña">
+                <label for="editarNuevoRol">Nuevo Rol:</label>
+                <select id="editarNuevoRol">
+                    <option value="1">Administrador</option>
+                    <option value="2">Cliente</option>
+                </select>
+                <button type="button" onclick="editarUsuario()">Editar Usuario</button>
+            </form>
+            <button type="button" onclick="eliminarUsuario()">Eliminar Usuario</button>
+        </section>
+        <section id="productos" class="seccion">
+            <h2>Control de Productos</h2>
+            <h2>Agregar Producto</h2>
+            <form onsubmit="agregarProducto(); return false;">
+                <label for="nombreProducto">Nombre:</label>
+                <input type="text" id="nombreProducto" required>
+                <br>
+                <label for="precioProducto">Precio:</label>
+                <input type="text" id="precioProducto" required>
+                <br>
+                <label for="fotoProducto">URL de la Foto:</label>
+                <input type="text" id="fotoProducto" required>
+                <br>
+                <label for="stockProducto">Stock:</label>
+                <input type="number" id="stockProducto" required>
+                <br>
+                <button type="submit">Agregar Producto</button>
+            </form>
+            <h2>Editar Producto</h2>
+            <select id="editarNombreProducto"></select>
+            <br>
+            <label for="editarNuevoNombre">Nuevo Nombre:</label>
+            <input type="text" id="editarNuevoNombre">
+            <br>
+            <label for="editarNuevoPrecio">Nuevo Precio:</label>
+            <input type="text" id="editarNuevoPrecio">
+            <br>
+            <label for="editarNuevaFoto">Nueva URL de la Foto:</label>
+            <input type="text" id="editarNuevaFoto">
+            <br>
+            <label for="editarNuevoStock">Nuevo Stock:</label>
+            <input type="number" id="editarNuevoStock">
+            <br>
+            <button type="button" onclick="editarProducto()">Editar Producto</button>
+            <button type="button" onclick="eliminarProducto()">Eliminar Producto</button>
+        </section>
+        <section id="dinamicas" class="seccion">
+            <h2>Administrar Dinámicas</h2>
+            <h3>Crear Nueva Dinámica</h3>
+            <form id="dinamica-form">
+                <label for="dinamicaTitulo">Título:</label>
+                <input type="text" id="dinamicaTitulo" required>
+                <label for="dinamicaDescripcion">Descripción:</label>
+                <textarea id="dinamicaDescripcion" required></textarea>
+                <button type="submit">Crear Dinámica</button>
+            </form>
+            <h3>Elegir Ganador</h3>
+            <div id="listaDinamicas"></div>
+            <h3>Outfits Subidos</h3>
+            <div id="outfitsSubidos"></div>
+            <button type="button" onclick="renovarDinamica()">Renovar Dinámica</button>
+        </section>
+        <section class="seccion">
+            <h2>Estadísticas de Ventas</h2>
+           
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="envios.html">Envíos</a></li>
+                <li><a href="terminos.html">Términos y Condiciones</a></li>
+                <li><a href="privacidad.html">Política de Privacidad</a></li>
+                <li><a href="devoluciones.html">Política de Devoluciones</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
+    </footer>
+    <script>
+        document.getElementById('dinamica-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            crearDinamica();
+        });
+
+        function cargarDinamicas() {
+            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
+            var listaDinamicas = document.getElementById('listaDinamicas');
+
+            listaDinamicas.innerHTML = ''; 
+
+            dinamicas.forEach(function(dinamica, index) {
+                var dinamicaDiv = document.createElement('div');
+                dinamicaDiv.className = 'dinamica';
+
+                var titulo = document.createElement('h3');
+                titulo.textContent = dinamica.titulo;
+
+                var descripcion = document.createElement('p');
+                descripcion.textContent = dinamica.descripcion;
+
+                var button = document.createElement('button');
+                button.textContent = 'Elegir Ganador';
+                button.onclick = function() {
+                    elegirGanador(index);
+                };
+
+                dinamicaDiv.appendChild(titulo);
+                dinamicaDiv.appendChild(descripcion);
+                dinamicaDiv.appendChild(button);
+
+                listaDinamicas.appendChild(dinamicaDiv);
+            });
+        }
+
+        function crearDinamica() {
+            var titulo = document.getElementById('dinamicaTitulo').value;
+            var descripcion = document.getElementById('dinamicaDescripcion').value;
+
+            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
+            dinamicas.push({
+                titulo: titulo,
+                descripcion: descripcion,
+                participantes: [] 
+            });
+            localStorage.setItem('dinamicas', JSON.stringify(dinamicas));
+            cargarDinamicas();
+        }
+
+        function elegirGanador(index) {
+            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
+            var dinamica = dinamicas[index];
+
+            if (dinamica.participantes.length === 0) {
+                alert('No hay participantes en esta dinámica.');
+                return;
+            }
+
+            var ganador = dinamica.participantes[Math.floor(Math.random() * dinamica.participantes.length)];
+            alert('El ganador es: ' + ganador.nombre);
+
+        
+        }
+
+        function renovarDinamica() {
+            if (confirm("¿Estás seguro de que quieres renovar la dinámica? Esto eliminará todos los outfits actuales.")) {
+                localStorage.removeItem('outfits');
+                cargarOutfits();
+                alert("La dinámica ha sido renovada.");
+            }
+        }
+
+        window.onload = function() {
+            cargarUsuarios(); 
+            cargarProductos(); 
+            cargarOutfits(); 
+            cargarDinamicas(); 
+            verificarAutenticacionAdmin(); 
+        };
+    </script>
+</body>
+</html>
