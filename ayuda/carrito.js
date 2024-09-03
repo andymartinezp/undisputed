@@ -6,12 +6,7 @@ var productoEjemplo = {
 };
 
 // Simulación de agregar un producto al carrito
-function agregarAlCarrito(producto) {
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarVistaPreviaCarrito();
-}
+
 
 function actualizarVistaPreviaCarrito() {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
