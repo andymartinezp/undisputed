@@ -6,11 +6,16 @@ var productoEjemplo = {
 };
 
 // Simulación de agregar un producto al carrito
-
+function agregarAlCarrito(producto) {
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.push(producto);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarVistaPreviaCarrito();
+}
 
 function actualizarVistaPreviaCarrito() {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    var contenedorCarrito = document.getElementById('cart-items');
+   
     var totalCarrito = 0;
 
     contenedorCarrito.innerHTML = ''; // Limpiar contenido anterior
