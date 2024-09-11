@@ -5,36 +5,48 @@ var productoEjemplo = {
     imagen: "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
 };
 
-// Simulación de agregar un producto al carrito
 function agregarAlCarrito(producto) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     carrito.push(producto);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarVistaPreviaCarrito();
+
+    // Redirigir a la página del carrito
+    window.location.href = 'carrito.html';
 }
 
+// Ejemplo de cómo podrías llamar a esta función cuando el usuario hace clic en un botón
+document.getElementById('boton-agregar-carrito').addEventListener('click', function() {
+    var producto = {
+        nombre: "Hoodie V1",
+        precio: 40000,
+        imagen: "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
+    };
+    agregarAlCarrito(producto);
+});
+
+// Actualiza la vista previa del carrito
 function actualizarVistaPreviaCarrito() {
+    var contenedorCarrito = document.getElementById('cart-items');
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-   
     var totalCarrito = 0;
 
     contenedorCarrito.innerHTML = ''; // Limpiar contenido anterior
 
     carrito.forEach(function(producto, index) {
-        totalCarrito += producto.precio;
+        totalCarrito += parseFloat(producto.precio.replace('$', '').replace(',', ''));
 
         var itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
 
         var img = document.createElement('img');
-        img.src = producto.imagen;
-        img.alt = producto.nombre;
+        img.src = producto.foto;
+        img.alt = producto.Nombre;
 
         var nombre = document.createElement('p');
-        nombre.textContent = producto.nombre;
+        nombre.textContent = producto.Nombre;
 
         var precio = document.createElement('p');
-        precio.textContent = '$' + producto.precio.toFixed(2);
+        precio.textContent = '$' + parseFloat(producto.precio.replace('$', '').replace(',', '')).toFixed(2);
 
         itemDiv.appendChild(img);
         itemDiv.appendChild(nombre);
@@ -54,7 +66,6 @@ function checkout() {
 // Ejemplo de agregar el producto al carrito
 agregarAlCarrito(productoEjemplo);
 
-// Asegúrate de actualizar la vista previa del carrito al cargar la página
 window.onload = function() {
     actualizarVistaPreviaCarrito();
 };
