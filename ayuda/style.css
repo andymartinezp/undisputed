@@ -217,7 +217,9 @@ main {
 }
 
 .upload-outfit button:hover {
-    background-color: #444444;
+    background-color: #7e7e7e;
+    transition: background-color 0.5s ease;
+
 }
 
 .info {

@@ -20,8 +20,16 @@
         };
 
         function agregarAlCarrito(producto) {
-            console.log("Producto añadido al carrito:", producto);
-        }
+        console.log("Producto añadido al carrito:", producto);
+
+        // Guardar el producto en el carrito
+        var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(producto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        // Redirigir al carrito
+        window.location.href = 'carrito.html';
+    }
     </script>
 </head>
 <body>

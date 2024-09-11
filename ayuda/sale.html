@@ -20,8 +20,21 @@
         };
 
         function agregarAlCarrito(producto) {
-            console.log("Producto añadido al carrito:", producto);
-        }
+    // Crear una nueva propiedad para el precio numérico
+    producto.PrecioNum = parseFloat(producto.Precio.replace('$', '').trim()) || 0;
+
+    // Obtener el carrito del localStorage o crear uno nuevo si no existe
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Añadir el producto al carrito
+    carrito.push(producto);
+
+    // Guardar el carrito actualizado en el localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Redirigir al carrito
+    window.location.href = 'carrito.html';
+}
     </script>
 </head>
 <body>
@@ -83,7 +96,9 @@
             </div>
         </div>
     </footer>
+
     <script>
+        // Función para cargar los productos en oferta
         function cargarProductosEnOferta() {
             var contenedor = document.getElementById('productos-sale');
             contenedor.innerHTML = ''; 
