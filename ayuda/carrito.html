@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras - Undisputed Clothing</title>
-    <script src="usuarios.js"></script>
-    <script src="productos.js"></script>
-    
-    <script src="carrito.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,16 +31,18 @@
             </a>
         </div>
     </header>
+
     <main>
         <section class="cart-preview">
             <h2>Carrito</h2>
             <div id="cart-items"></div>
             <div class="cart-total">
                 <p>Total: $<span id="cart-total">0.00</span></p>
-                <button onclick="checkout()">Ver Carrito</button>
+                <button onclick="checkout()">COMPRAR</button>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -69,5 +67,91 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        window.onload = function() {
+            cargarCarrito();
+        };
+
+        function cargarCarrito() {
+            var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            var contenedorCarrito = document.getElementById('cart-items');
+            var totalCarrito = 0;
+
+            contenedorCarrito.innerHTML = ''; // Limpiar el contenido previo
+
+            // Si el carrito está vacío, mostramos un mensaje
+            if (carrito.length === 0) {
+                contenedorCarrito.innerHTML = '<p>El carrito está vacío.</p>';
+                document.getElementById('cart-total').textContent = "0.00";
+                return;
+            }
+
+            // Mostrar los productos en el carrito
+            carrito.forEach(function(producto, index) {
+                var itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+
+                // Crear imagen del producto
+                var img = document.createElement('img');
+                img.src = producto.foto;
+                img.alt = producto.Nombre;
+                img.style.width = "50px";
+
+                // Crear el nombre del producto
+                var nombre = document.createElement('p');
+                nombre.textContent = producto.Nombre;
+
+                // Mostrar el precio del producto
+                var precio = document.createElement('p');
+                if (producto.PrecioNum) {
+                    precio.textContent = 'Precio: $' + producto.PrecioNum.toFixed(2);
+                    totalCarrito += producto.PrecioNum;
+                } else {
+                    var precioNum = parseFloat(producto.Precio.replace('$', '').trim()) || 0;
+                    precio.textContent = 'Precio: ' + producto.Precio;
+                    totalCarrito += precioNum;
+                }
+
+                // Crear el botón para eliminar el producto
+                var eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.onclick = function() {
+                    eliminarDelCarrito(index);
+                };
+
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(nombre);
+                itemDiv.appendChild(precio);
+                itemDiv.appendChild(eliminarBtn);
+
+                contenedorCarrito.appendChild(itemDiv);
+            });
+
+            // Actualizar el total del carrito
+            document.getElementById('cart-total').textContent = totalCarrito.toFixed(2);
+        }
+
+        function eliminarDelCarrito(index) {
+            var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            cargarCarrito(); // Actualizar la vista del carrito
+        }
+
+        function checkout() {
+            var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Verificar si el carrito está vacío
+            if (carrito.length === 0) {
+                alert("El carrito está vacío. Añade productos antes de proceder al pago.");
+                return;
+            }
+
+            // Si el carrito tiene productos, proceder al pago
+            alert("Redirigiendo a la página de compra...");
+            window.location.href = 'pagina-de-compra.html'; // Cambia esto a la URL de tu página de compra
+        }
+    </script>
 </body>
 </html>

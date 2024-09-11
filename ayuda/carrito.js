@@ -6,11 +6,12 @@ var productoEjemplo = {
 };
 
 function agregarAlCarrito(producto) {
+    // Guardar el producto en el almacenamiento local
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     carrito.push(producto);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    // Redirigir a la página del carrito
+    
+    // Redirigir al carrito
     window.location.href = 'carrito.html';
 }
 
@@ -24,16 +25,16 @@ document.getElementById('boton-agregar-carrito').addEventListener('click', funct
     agregarAlCarrito(producto);
 });
 
-// Actualiza la vista previa del carrito
+var contenedorCarrito = document.getElementById('cart-items'); // Asegúrate de que este ID coincide con el HTML
+
 function actualizarVistaPreviaCarrito() {
-    var contenedorCarrito = document.getElementById('cart-items');
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     var totalCarrito = 0;
 
     contenedorCarrito.innerHTML = ''; // Limpiar contenido anterior
 
     carrito.forEach(function(producto, index) {
-        totalCarrito += parseFloat(producto.precio.replace('$', '').replace(',', ''));
+        totalCarrito += parseFloat(producto.precio.replace('$', ''));
 
         var itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
@@ -46,7 +47,7 @@ function actualizarVistaPreviaCarrito() {
         nombre.textContent = producto.Nombre;
 
         var precio = document.createElement('p');
-        precio.textContent = '$' + parseFloat(producto.precio.replace('$', '').replace(',', '')).toFixed(2);
+        precio.textContent = '$' + producto.Precio;
 
         itemDiv.appendChild(img);
         itemDiv.appendChild(nombre);
@@ -56,7 +57,6 @@ function actualizarVistaPreviaCarrito() {
     });
 
     document.getElementById('cart-total').textContent = totalCarrito.toFixed(2);
-}
 
 function checkout() {
     alert("Redirigiendo a la página del carrito...");
