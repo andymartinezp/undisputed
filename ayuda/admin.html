@@ -4,8 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Undisputed Clothing</title>
-    <script src="admin.js"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #202020;
+            color: white;
+            padding: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .seccion {
+            display: none;
+            margin-bottom: 40px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            color: #202020;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #202020;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #202020;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        footer nav ul li {
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Estilos adicionales para mejorar la apariencia */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .outfit-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+
+        .outfit-item img {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,16 +139,17 @@
                 <li><a href="#" onclick="mostrarSeccion('usuarios')">Administrar Usuarios</a></li>
                 <li><a href="#" onclick="mostrarSeccion('productos')">Administrar Productos</a></li>
                 <li><a href="#" onclick="mostrarSeccion('dinamicas')">Administrar Dinámicas</a></li>
-               
             </ul>
         </nav>
     </header>
+    
     <main>
-        <section id="usuarios" class="seccion">
+        <!-- Sección de Usuarios -->
+        <section id="usuarios" class="seccion active">
             <h2>Gestión de Usuarios</h2>
             <form id="formAgregarUsuario">
                 <label for="nuevoMail">Mail:</label>
-                <input type="text" id="nuevoMail" required>
+                <input type="email" id="nuevoMail" required>
                 <label for="nuevaContraseña">Contraseña:</label>
                 <input type="password" id="nuevaContraseña" required>
                 <label for="nuevoRol">Rol:</label>
@@ -33,79 +159,91 @@
                 </select>
                 <button type="button" onclick="agregarUsuario()">Añadir Usuario</button>
             </form>
+
             <form id="formEditarUsuario">
                 <label for="editarMail">Seleccionar Usuario:</label>
-                <select id="editarMail">
-                    
-                </select>
+                <select id="editarMail"></select>
+
                 <label for="editarNuevaContraseña">Nueva Contraseña:</label>
                 <input type="password" id="editarNuevaContraseña">
+                
                 <label for="editarNuevoRol">Nuevo Rol:</label>
                 <select id="editarNuevoRol">
                     <option value="1">Administrador</option>
                     <option value="2">Cliente</option>
                 </select>
-                <button type="button" onclick="editarUsuario()">Editar Usuario</button>
+                <div class="btn-group">
+                    <button type="button" onclick="editarUsuario()">Editar Usuario</button>
+                    <button type="button" onclick="eliminarUsuario()">Eliminar Usuario</button>
+                </div>
             </form>
-            <button type="button" onclick="eliminarUsuario()">Eliminar Usuario</button>
         </section>
+
+        <!-- Sección de Productos -->
         <section id="productos" class="seccion">
             <h2>Control de Productos</h2>
-            <h2>Agregar Producto</h2>
+
+            <!-- Agregar Producto -->
             <form onsubmit="agregarProducto(); return false;">
                 <label for="nombreProducto">Nombre:</label>
                 <input type="text" id="nombreProducto" required>
-                <br>
+
                 <label for="precioProducto">Precio:</label>
-                <input type="text" id="precioProducto" required>
-                <br>
+                <input type="number" id="precioProducto" required>
+
                 <label for="fotoProducto">URL de la Foto:</label>
                 <input type="text" id="fotoProducto" required>
-                <br>
+
                 <label for="stockProducto">Stock:</label>
                 <input type="number" id="stockProducto" required>
-                <br>
+
                 <button type="submit">Agregar Producto</button>
             </form>
-            <h2>Editar Producto</h2>
-            <select id="editarNombreProducto"></select>
-            <br>
-            <label for="editarNuevoNombre">Nuevo Nombre:</label>
-            <input type="text" id="editarNuevoNombre">
-            <br>
-            <label for="editarNuevoPrecio">Nuevo Precio:</label>
-            <input type="text" id="editarNuevoPrecio">
-            <br>
-            <label for="editarNuevaFoto">Nueva URL de la Foto:</label>
-            <input type="text" id="editarNuevaFoto">
-            <br>
-            <label for="editarNuevoStock">Nuevo Stock:</label>
-            <input type="number" id="editarNuevoStock">
-            <br>
-            <button type="button" onclick="editarProducto()">Editar Producto</button>
-            <button type="button" onclick="eliminarProducto()">Eliminar Producto</button>
+
+            <!-- Editar Producto -->
+            <form>
+                <label for="editarNombreProducto">Seleccionar Producto:</label>
+                <select id="editarNombreProducto"></select>
+
+                <label for="editarNuevoNombre">Nuevo Nombre:</label>
+                <input type="text" id="editarNuevoNombre">
+
+                <label for="editarNuevoPrecio">Nuevo Precio:</label>
+                <input type="number" id="editarNuevoPrecio">
+
+                <label for="editarNuevaFoto">Nueva URL de la Foto:</label>
+                <input type="text" id="editarNuevaFoto">
+
+                <label for="editarNuevoStock">Nuevo Stock:</label>
+                <input type="number" id="editarNuevoStock">
+
+                <div class="btn-group">
+                    <button type="button" onclick="editarProducto()">Editar Producto</button>
+                    <button type="button" onclick="eliminarProducto()">Eliminar Producto</button>
+                </div>
+            </form>
         </section>
+
+        <!-- Sección de Dinámicas -->
         <section id="dinamicas" class="seccion">
             <h2>Administrar Dinámicas</h2>
             <h3>Crear Nueva Dinámica</h3>
             <form id="dinamica-form">
                 <label for="dinamicaTitulo">Título:</label>
                 <input type="text" id="dinamicaTitulo" required>
+
                 <label for="dinamicaDescripcion">Descripción:</label>
                 <textarea id="dinamicaDescripcion" required></textarea>
                 <button type="submit">Crear Dinámica</button>
             </form>
-            <h3>Elegir Ganador</h3>
-            <div id="listaDinamicas"></div>
+
             <h3>Outfits Subidos</h3>
             <div id="outfitsSubidos"></div>
+
             <button type="button" onclick="renovarDinamica()">Renovar Dinámica</button>
         </section>
-        <section class="seccion">
-            <h2>Estadísticas de Ventas</h2>
-           
-        </section>
     </main>
+
     <footer>
         <nav>
             <ul>
@@ -119,86 +257,16 @@
         </nav>
         <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
     </footer>
+
+    <script src="admin.js"></script>
     <script>
-        document.getElementById('dinamica-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            crearDinamica();
-        });
-
-        function cargarDinamicas() {
-            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
-            var listaDinamicas = document.getElementById('listaDinamicas');
-
-            listaDinamicas.innerHTML = ''; 
-
-            dinamicas.forEach(function(dinamica, index) {
-                var dinamicaDiv = document.createElement('div');
-                dinamicaDiv.className = 'dinamica';
-
-                var titulo = document.createElement('h3');
-                titulo.textContent = dinamica.titulo;
-
-                var descripcion = document.createElement('p');
-                descripcion.textContent = dinamica.descripcion;
-
-                var button = document.createElement('button');
-                button.textContent = 'Elegir Ganador';
-                button.onclick = function() {
-                    elegirGanador(index);
-                };
-
-                dinamicaDiv.appendChild(titulo);
-                dinamicaDiv.appendChild(descripcion);
-                dinamicaDiv.appendChild(button);
-
-                listaDinamicas.appendChild(dinamicaDiv);
+        function mostrarSeccion(seccionId) {
+            var secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('active');
             });
+            document.getElementById(seccionId).classList.add('active');
         }
-
-        function crearDinamica() {
-            var titulo = document.getElementById('dinamicaTitulo').value;
-            var descripcion = document.getElementById('dinamicaDescripcion').value;
-
-            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
-            dinamicas.push({
-                titulo: titulo,
-                descripcion: descripcion,
-                participantes: [] 
-            });
-            localStorage.setItem('dinamicas', JSON.stringify(dinamicas));
-            cargarDinamicas();
-        }
-
-        function elegirGanador(index) {
-            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
-            var dinamica = dinamicas[index];
-
-            if (dinamica.participantes.length === 0) {
-                alert('No hay participantes en esta dinámica.');
-                return;
-            }
-
-            var ganador = dinamica.participantes[Math.floor(Math.random() * dinamica.participantes.length)];
-            alert('El ganador es: ' + ganador.nombre);
-
-        
-        }
-
-        function renovarDinamica() {
-            if (confirm("¿Estás seguro de que quieres renovar la dinámica? Esto eliminará todos los outfits actuales.")) {
-                localStorage.removeItem('outfits');
-                cargarOutfits();
-                alert("La dinámica ha sido renovada.");
-            }
-        }
-
-        window.onload = function() {
-            cargarUsuarios(); 
-            cargarProductos(); 
-            cargarOutfits(); 
-            cargarDinamicas(); 
-            verificarAutenticacionAdmin(); 
-        };
     </script>
 </body>
 </html>
