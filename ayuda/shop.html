@@ -8,6 +8,26 @@
     <script src="productos.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .filter-options, .sort-options {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filter-options p, .sort-options p {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .filter-options p:hover, .sort-options p:hover {
+            color: #202020;
+            font-weight: bold;
+        }
+    </style>
     <script>
         window.onload = function() {
             var usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
@@ -15,21 +35,40 @@
                 alert("Debe iniciar sesión para acceder a esta página");
                 window.location.href = 'iniciarSesion.html';
             } else {
-                cargarProductos();
+                cargarProductos(); // Cargar los productos al inicio
             }
         };
 
+        // Función para mostrar/ocultar las opciones de filtro
+        function toggleFilterOptions() {
+            var filterOptions = document.getElementById('filter-options');
+            filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Función para mostrar/ocultar las opciones de ordenar
+        function toggleSortOptions() {
+            var sortOptions = document.getElementById('sort-options');
+            sortOptions.style.display = sortOptions.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Función para agregar un producto al carrito (validando la selección de talle)
         function agregarAlCarrito(producto) {
-        console.log("Producto añadido al carrito:", producto);
+            var talleSelect = document.getElementById(`talle-${producto.Nombre}`);
+            var talleSeleccionado = talleSelect.value;
 
-        // Guardar el producto en el carrito
-        var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        carrito.push(producto);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+            if (talleSeleccionado === "") {
+                alert("Por favor, seleccione un talle antes de agregar el producto al carrito.");
+                return;
+            }
 
-        // Redirigir al carrito
-        window.location.href = 'carrito.html';
-    }
+            producto.talle = talleSeleccionado;
+
+            var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.push(producto);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            window.location.href = 'carrito.html';
+        }
     </script>
 </head>
 <body>
@@ -61,8 +100,21 @@
         <section class="shop-products">
             <h2>SHOP</h2>
             <div class="filters">
-                <button class="filter-btn">Filtrar <img src="filter-512.webp" alt="Filter Icon"></button>
-                <button class="sort-btn">Ordenar por <img src="Orden.png" alt="Sort Icon"></button>
+                <button class="filter-btn" onclick="toggleFilterOptions()">Filtrar <img src="filter-512.webp" alt="Filter Icon"></button>
+                <div id="filter-options" class="filter-options">
+                    <p>Precio: Mayor a Menor</p>
+                    <p>Precio: Menor a Mayor</p>
+                    <p>Más vendidos</p>
+                    <p>Mejor valorados</p>
+                </div>
+
+                <button class="sort-btn" onclick="toggleSortOptions()">Ordenar por <img src="Orden.png" alt="Sort Icon"></button>
+                <div id="sort-options" class="sort-options">
+                    <p>Novedades</p>
+                    <p>Descuento</p>
+                    <p>Popularidad</p>
+                    <p>Alfabéticamente</p>
+                </div>
             </div>
             <div id="productos-shop" class="productos-container"></div>
         </section>
@@ -91,8 +143,8 @@
             </div>
         </div>
     </footer>
+
     <script>
-        
         function cargarProductos() {
             var contenedor = document.getElementById('productos-shop');
             contenedor.innerHTML = ''; 
@@ -144,6 +196,20 @@
                 var precio = document.createElement('p');
                 precio.textContent = producto.Precio;
 
+                // Agregar selector de talle
+                var talleLabel = document.createElement('label');
+                talleLabel.textContent = "Talle:";
+
+                var talleSelect = document.createElement('select');
+                talleSelect.id = `talle-${producto.Nombre}`;  // ID único por producto
+                var opcionesTalle = ["", "XS", "S", "M", "L", "XL", "XXL"];
+                opcionesTalle.forEach(function(talle) {
+                    var option = document.createElement('option');
+                    option.value = talle;
+                    option.textContent = talle;
+                    talleSelect.appendChild(option);
+                });
+
                 var addToCartBtn = document.createElement('button');
                 addToCartBtn.textContent = 'Añadir al carrito';
                 addToCartBtn.onclick = function() {
@@ -153,6 +219,8 @@
                 productoDiv.appendChild(img);
                 productoDiv.appendChild(nombre);
                 productoDiv.appendChild(precio);
+                productoDiv.appendChild(talleLabel);
+                productoDiv.appendChild(talleSelect);
                 productoDiv.appendChild(addToCartBtn);
 
                 contenedor.appendChild(productoDiv);
