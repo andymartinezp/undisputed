@@ -12,6 +12,7 @@ body {
     padding: 0;
     background-color: #ffffff; 
     font-size: 18px;
+    background-color: #f8f5f5;
 }
 
 
@@ -167,7 +168,7 @@ main {
     font-family:  Helvetica, sans-serif;
 }
 .product, .dinamica {
-    border: 7px solid #004781fa;
+    border: 4px solid #004781fa;
     box-sizing: border-box;
     padding: 20px; 
     margin: 20px; 
@@ -306,7 +307,7 @@ main {
 
 .info .atentamente {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 30px;
     font-style: italic;
     text-align: right;
     position: absolute; 
@@ -318,8 +319,10 @@ main {
 }
 
 .info .atentamente img {
-    height: 60px; 
-    margin-left: 10px; 
+    height: 30px; 
+    
+    width: 27%;
+    height:40% ;
 }
 
 footer {
@@ -502,43 +505,5 @@ footer p {
 
 .cart-total button:hover {
     background-color: #444444;
-}
-
-/* Para pantallas pequeñas (móviles) */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .search-and-icons {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .product, .dinamica {
-        width: calc(100% - 40px); /* Ajusta el ancho para pantallas pequeñas */
-    }
-
-    .product img, .dinamica img {
-        height: auto; /* Ajusta la altura de la imagen */
-    }
-
-    .product h3, .dinamica p {
-        font-size: 24px; /* Ajusta el tamaño de la fuente */
-    }
-
-    .product p {
-        font-size: 16px; /* Ajusta el tamaño de la fuente */
-    }
 }
 
