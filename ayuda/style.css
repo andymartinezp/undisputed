@@ -1,23 +1,37 @@
+
+
+@font-face {
+    font-family: 'Grande Italic';
+    src: url('fonts/grande_italic.ttf.ttf') format('truetype');
+}
+
+
 body {
-    font-family: Arial, sans-serif;
+    
     margin: 0;
     padding: 0;
     background-color: #ffffff; 
+    font-size: 18px;
+    background-color: #f8f5f5;
 }
 
+
 header {
-    background-color: #202020; 
+    background-color: #0868b6f1; 
     color: #ffffff; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 40px;
+    
 }
 
 header .logo img {
     height: 50px; 
 
 }
+
+
 
 nav ul {
     list-style: none;
@@ -31,25 +45,28 @@ nav ul.nav-links {
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin: 0 45px;
 }
 
 nav ul li a {
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 5px 30px;
+    font-family: 'Grande Italic';
+    font-size: 20px;
+    
 }
 
 nav ul li a:hover {
-    background-color: #444444;
+    background-color: #000000;
     border-radius: 5px;
 }
 
 .search-and-icons {
     display: flex;
     align-items: center;
-    background-color: #6e6e6e;
+   
 }
 
 .search-and-icons form {
@@ -57,10 +74,22 @@ nav ul li a:hover {
 }
 
 .search-and-icons input {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #dddddd;
+    padding: 10px;
+    border-radius: 2px;
+    border: 2px solid #ffffff;
+    
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    background-color: #f1f1f1;
 }
+
+.search-and-icons input:focus {
+   
+    outline: none;
+}
+
+
+
 
 .icon {
     width: 24px; 
@@ -89,16 +118,20 @@ main {
     padding: 10px 20px;
     margin: 0;
     font-size: 24px;
+    font-family: 'Grande Italic';
 }
 
 .featured-products, .sale-products, .shop-products, .moga-challenge {
     margin: 10px 0;
     text-align: center;
+   
 }
 
 .featured-products h2, .sale-products h2, .shop-products h2, .moga-challenge h2 {
     font-size: 22px;
     margin-bottom: 20px;
+    font-size: 50px;
+    font-family: 'Grande Italic';
 }
 
 .filters {
@@ -106,6 +139,7 @@ main {
     justify-content: center;
     margin-bottom: 20px;
 }
+
 
 .filter-btn, .sort-btn {
     background-color: #6e6e6e;
@@ -117,6 +151,8 @@ main {
     border-radius: 5px;
     display: flex;
     align-items: center;
+
+    
 }
 
 .filter-btn img, .sort-btn img {
@@ -129,35 +165,46 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    font-family:  Helvetica, sans-serif;
 }
-
 .product, .dinamica {
-    border: 2px solid #000000;
+    border: 4px solid #004781fa;
     box-sizing: border-box;
     padding: 20px; 
     margin: 20px; 
     width: calc(33.333% - 40px); 
     text-align: center;
+    box-shadow: 5px 5px 5px rgb(58, 58, 58); 
+    border-radius: 4px;
+   background-color: rgb(255, 255, 255);
+    
 }
 
 .product img, .dinamica img {
     max-width: 100%;
-    height: 300px; 
+    height: 450px; 
     object-fit: cover; 
 }
 
 .product h3, .dinamica p {
     margin: 15px 0;
-    font-size: 20px; 
+    font-size: 30px; 
     text-transform: uppercase;
     color: #000000;
+    
+
 }
 
 .product p {
     font-size: 18px; 
     color: #000000;
     margin-bottom: 10px;
+    
 }
+
+
+
+
 
 .moga-title {
     font-size: 80px; 
@@ -223,6 +270,7 @@ main {
 }
 
 .info {
+    font-family:  Helvetica, sans-serif;
     margin: 20px 0;
     text-align: left;
     padding: 20px;
@@ -231,11 +279,14 @@ main {
     background-position: center;
     color: #000000;
     position: relative; 
+    
+    
 }
 
 .info h2 {
-    font-size: 28px;
+    font-size: 80px;
     margin-bottom: 20px;
+    font-family: 'Grande Italic';
 }
 
 .info p {
@@ -256,7 +307,7 @@ main {
 
 .info .atentamente {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 30px;
     font-style: italic;
     text-align: right;
     position: absolute; 
@@ -264,15 +315,18 @@ main {
     right: 20px; 
     display: flex; 
     align-items: center; 
+    
 }
 
 .info .atentamente img {
-    height: 60px; 
-    margin-left: 10px; 
+    height: 30px; 
+    
+    width: 27%;
+    height:40% ;
 }
 
 footer {
-    background-color: #f0f0f0; 
+    background-color: #004781fa;  
     color: #000000;
     padding: 20px 0;
     text-align: center;
@@ -285,6 +339,7 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-column {
@@ -295,6 +350,8 @@ footer {
 .footer-column h3 {
     font-size: 16px;
     margin-bottom: 10px;
+    color: #ffffff;
+
 }
 
 .footer-column ul {
@@ -308,7 +365,7 @@ footer {
 }
 
 .footer-column ul li a {
-    color: #000000;
+    color: #c4c2c2;
     text-decoration: none;
     font-size: 14px;
 }
@@ -325,7 +382,7 @@ footer {
 footer p {
     margin: 10px 0 0;
     font-size: 14px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .product p {
