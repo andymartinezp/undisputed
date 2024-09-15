@@ -1,71 +1,58 @@
-// Simulación de producto para agregar al carrito
-var productoEjemplo = {
-    nombre: "Hoodie V1",
-    precio: 40000,
-    imagen: "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
-};
-
-function agregarAlCarrito(producto) {
-    // Guardar el producto en el almacenamiento local
+function cargarCarrito() {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    
-    // Redirigir al carrito
-    window.location.href = 'carrito.html';
-}
-
-// Ejemplo de cómo podrías llamar a esta función cuando el usuario hace clic en un botón
-document.getElementById('boton-agregar-carrito').addEventListener('click', function() {
-    var producto = {
-        nombre: "Hoodie V1",
-        precio: 40000,
-        imagen: "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
-    };
-    agregarAlCarrito(producto);
-});
-
-var contenedorCarrito = document.getElementById('cart-items'); // Asegúrate de que este ID coincide con el HTML
-
-function actualizarVistaPreviaCarrito() {
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    var contenedorCarrito = document.getElementById('cart-items');
     var totalCarrito = 0;
 
-    contenedorCarrito.innerHTML = ''; // Limpiar contenido anterior
+    contenedorCarrito.innerHTML = ''; // Limpiar el contenido previo
+
+    if (carrito.length === 0) {
+        contenedorCarrito.innerHTML = '<p>El carrito está vacío.</p>';
+        document.getElementById('cart-total').textContent = "0.00";
+        return;
+    }
 
     carrito.forEach(function(producto, index) {
-        totalCarrito += parseFloat(producto.precio.replace('$', ''));
-
         var itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
 
         var img = document.createElement('img');
-        img.src = producto.foto;
-        img.alt = producto.Nombre;
+        img.src = producto.foto || "path/to/default/image.jpg"; // Proporciona una imagen por defecto
+        img.alt = producto.nombre || "Producto";
+        img.style.width = "50px";
 
         var nombre = document.createElement('p');
-        nombre.textContent = producto.Nombre;
+        nombre.textContent = producto.nombre || "Nombre no disponible";
 
         var precio = document.createElement('p');
-        precio.textContent = '$' + producto.Precio;
+        var precioNum = parseFloat(producto.precio);
+        
+        if (!isNaN(precioNum)) {
+            precio.textContent = 'Precio: $' + precioNum.toFixed(2);
+            totalCarrito += precioNum;
+        } else {
+            precio.textContent = 'Precio no disponible';
+        }
+
+        var eliminarBtn = document.createElement('button');
+        eliminarBtn.textContent = 'Eliminar';
+        eliminarBtn.onclick = function() {
+            eliminarDelCarrito(index);
+        };
 
         itemDiv.appendChild(img);
         itemDiv.appendChild(nombre);
         itemDiv.appendChild(precio);
+        itemDiv.appendChild(eliminarBtn);
 
         contenedorCarrito.appendChild(itemDiv);
     });
 
     document.getElementById('cart-total').textContent = totalCarrito.toFixed(2);
-
-function checkout() {
-    alert("Redirigiendo a la página del carrito...");
-    // Aquí puedes redirigir a la página de carrito si es necesario
 }
 
-// Ejemplo de agregar el producto al carrito
-agregarAlCarrito(productoEjemplo);
-
-window.onload = function() {
-    actualizarVistaPreviaCarrito();
-};
+function eliminarDelCarrito(index) {
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.splice(index, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    cargarCarrito(); // Actualizar la vista del carrito
+}

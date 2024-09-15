@@ -1,16 +1,5 @@
-var remeras = [
-    {
-        "Nombre":"Remera oversize",
-        "Precio":"$100",
-        "foto":"https://admin.deloscojones.com.ar/Content/UploadDirectory/Products/794/image_8f575d19-e7b5-4c2b-856c-6dfa90f8dc02.jpg",
-        "stock": 10
-    },{
-        "Nombre":"Remera boxy fit",
-        "Precio":"$100",
-        "foto":"https://acdn.mitiendanube.com/stores/001/015/914/products/img_1171-8df9293a52077e791616966108200570-1024-1024-8e2ff5a19e797ae67e169722059437571-5948d2530be44da3ff16972206460761-640-0.jpg",
-        "stock": 5
-    }
-];
+// Datos de ejemplo de productos (puedes añadir más o cambiar)
+var remeras = obtenerProductos();
 
 function cargarRemeras() {
     var lista = document.getElementById("lista");
@@ -22,12 +11,12 @@ function cargarRemeras() {
         var foto = document.createElement("img");
         var boton = document.createElement("button");
 
-        titulo.textContent = remeras[index].Nombre;
-        precio.textContent = remeras[index].Precio;
+        titulo.textContent = remeras[index].nombre; // Usamos 'nombre' en lugar de 'Nombre'
+        precio.textContent = "$" + remeras[index].precio; // Nos aseguramos de que el precio siempre sea un número
         foto.src = remeras[index].foto;
         foto.classList.add("foto");
         boton.textContent = "Comprar";
-        boton.onclick = function() { comprar(index); };
+        boton.onclick = function() { manejarAñadirAlCarrito(remeras[index].id); }; // Usamos el id del producto
         boton.classList.add("boton");
 
         elemento.appendChild(titulo);
@@ -38,26 +27,19 @@ function cargarRemeras() {
     }
 }
 
-function comprar(index) {
-    var usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
-    if (!usuarioLogueado) {
-        alert("Por favor, inicie sesión para realizar una compra.");
-        return;
+// Esta función ahora maneja correctamente agregar al carrito usando los id
+function manejarAñadirAlCarrito(id) {
+    var producto = obtenerProductoPorId(id);
+    if (producto) {
+        agregarAlCarrito(producto); // Llamamos a la función que ya existe en productos.js
+        alert("Producto agregado al carrito");
+        window.location.href = 'carrito.html'; // Redirigir al carrito
+    } else {
+        console.error("Producto no encontrado");
     }
-
-    var compras = JSON.parse(localStorage.getItem('compras')) || [];
-    var nuevaCompra = {
-        "usuario": usuarioLogueado.mail,
-        "producto": remeras[index],
-        "estado": "Pendiente",
-        "fecha": new Date().toLocaleString()
-    };
-    compras.push(nuevaCompra);
-    localStorage.setItem('compras', JSON.stringify(compras));
-
-    alert("Compra realizada exitosamente");
 }
 
+// Cargar remeras al inicio
 window.onload = function() {
     cargarRemeras();
 };
