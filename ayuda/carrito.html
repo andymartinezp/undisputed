@@ -80,8 +80,9 @@
 
             contenedorCarrito.innerHTML = ''; // Limpiar el contenido previo
 
-            // Si el carrito está vacío, mostramos un mensaje
+            // Mostrar mensaje si el carrito está vacío
             if (carrito.length === 0) {
+                console.log("El carrito está vacío.");
                 contenedorCarrito.innerHTML = '<p>El carrito está vacío.</p>';
                 document.getElementById('cart-total').textContent = "0.00";
                 return;
@@ -89,28 +90,41 @@
 
             // Mostrar los productos en el carrito
             carrito.forEach(function(producto, index) {
+                console.log("Producto en el carrito:", producto);
+
                 var itemDiv = document.createElement('div');
                 itemDiv.className = 'cart-item';
 
                 // Crear imagen del producto
                 var img = document.createElement('img');
-                img.src = producto.foto;
-                img.alt = producto.Nombre;
+                img.src = producto.foto || "imagen-default.jpg"; // Usa una imagen por defecto si no hay
+                img.alt = producto.nombre || "Producto";
                 img.style.width = "50px";
 
                 // Crear el nombre del producto
                 var nombre = document.createElement('p');
-                nombre.textContent = producto.Nombre;
+                nombre.textContent = producto.nombre || "Nombre no disponible";
 
                 // Mostrar el precio del producto
                 var precio = document.createElement('p');
-                if (producto.PrecioNum) {
-                    precio.textContent = 'Precio: $' + producto.PrecioNum.toFixed(2);
-                    totalCarrito += producto.PrecioNum;
+                var precioNum;
+
+                // Si el precio es un número, usarlo directamente; si es una cadena, convertirlo
+                if (typeof producto.precio === 'number') {
+                    precioNum = producto.precio;
+                } else if (typeof producto.precio === 'string') {
+                    precioNum = parseFloat(producto.precio.replace('$', '').trim()) || 0;
                 } else {
-                    var precioNum = parseFloat(producto.Precio.replace('$', '').trim()) || 0;
-                    precio.textContent = 'Precio: ' + producto.Precio;
+                    console.error("Precio no válido para el producto:", producto);
+                    precioNum = 0;
+                }
+
+                // Mostrar el precio si es válido
+                if (!isNaN(precioNum)) {
+                    precio.textContent = 'Precio: $' + precioNum.toFixed(2);
                     totalCarrito += precioNum;
+                } else {
+                    precio.textContent = 'Precio no disponible';
                 }
 
                 // Crear el botón para eliminar el producto
@@ -120,6 +134,7 @@
                     eliminarDelCarrito(index);
                 };
 
+                // Añadir elementos al contenedor del producto
                 itemDiv.appendChild(img);
                 itemDiv.appendChild(nombre);
                 itemDiv.appendChild(precio);
@@ -130,9 +145,11 @@
 
             // Actualizar el total del carrito
             document.getElementById('cart-total').textContent = totalCarrito.toFixed(2);
+            console.log("Total del carrito actualizado:", totalCarrito);
         }
 
         function eliminarDelCarrito(index) {
+            console.log("Eliminando producto del carrito en índice:", index);
             var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             carrito.splice(index, 1);
             localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -142,15 +159,13 @@
         function checkout() {
             var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-            // Verificar si el carrito está vacío
             if (carrito.length === 0) {
                 alert("El carrito está vacío. Añade productos antes de proceder al pago.");
                 return;
             }
 
-            // Si el carrito tiene productos, proceder al pago
             alert("Redirigiendo a la página de compra...");
-            window.location.href = 'pagina-de-compra.html'; // Cambia esto a la URL de tu página de compra
+            window.location.href = 'pagina-de-compra.html';
         }
     </script>
 </body>

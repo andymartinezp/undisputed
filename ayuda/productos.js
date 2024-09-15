@@ -1,30 +1,65 @@
+// productos.js
 function obtenerProductos() {
     return [
         {
             id: 1,
             nombre: "Hoodie",
-            precio: 100,
-            foto: "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
+            precio: 80,
+            foto: "https://http2.mlstatic.com/D_NQ_NP_682348-MLA46725921582_072021-O.webp"
         },
         {
             id: 2,
             nombre: "Remera",
-            precio: 50,
-            foto: "https://tuareq.com/cdn/shop/files/prueba-tuareq2.png?v=1706281192&width=1000"
+            precio: 40,
+            foto: "https://blanks.com.ar/wp-content/uploads/2024/02/REMERA-LISA-BLANCA-DELANTERA-1.png"
+        },
+        {
+            id: 3,
+            nombre: "Baggy",
+            precio: 60,
+            foto: "https://oldtree.cl/wp-content/uploads/2023/10/old-tree-baggy-pant-lighblue.jpg"
+        },
+        {
+            id: 4,
+            nombre: "Gorra",
+            precio: 15,
+            foto: "https://http2.mlstatic.com/D_NQ_NP_956937-MLA70192125866_062023-O.webp"
+        },
+        {
+            id: 5,
+            nombre: "Boxy",
+            precio: 25,
+            foto: "https://acdn.mitiendanube.com/stores/001/177/291/products/boxyclassicblanca-espalda-16afc9b372cb4899c417138285399209-640-0.png"
+        },
+        {
+            id: 6,
+            nombre: "Jeans",
+            precio: 75,
+            foto: "https://m.media-amazon.com/images/I/61Iam2zJ4OL._AC_UY1000_.jpg"
         }
     ];
 }
 
-function agregarAlCarrito(producto) {
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Verificar si el producto ya está en el carrito
-    var productoExistente = carrito.find(item => item.id === producto.id);
-    if (!productoExistente) {
-        carrito.push(producto);
+function agregarAlCarrito(productoId) {
+    var producto = obtenerProductoPorId(productoId);
+    if (producto) {
+        var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        var productoExistente = carrito.find(p => p.id === producto.id);
+        if (!productoExistente) {
+            carrito.push({
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                foto: producto.foto
+            });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert("Producto añadido al carrito");
+        } else {
+            alert("El producto ya está en el carrito");
+        }
+    } else {
+        alert("Producto no encontrado");
     }
-    
-    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function obtenerProductoPorId(id) {
@@ -32,15 +67,4 @@ function obtenerProductoPorId(id) {
     return productos.find(producto => producto.id === id);
 }
 
-function manejarAñadirAlCarrito(id) {
-    var producto = obtenerProductoPorId(id);
-    if (producto) {
-        agregarAlCarrito(producto);
-        window.location.href = 'carrito.html'; // Redirige al carrito después de agregar el producto
-    } else {
-        console.error("Producto no encontrado");
-    }
-}
-
-// Exponer funciones para que puedan ser usadas en otros archivos
-window.manejarAñadirAlCarrito = manejarAñadirAlCarrito;
+window.agregarAlCarrito = agregarAlCarrito;  // Hacer esta función global para que pueda ser llamada desde el HTML
