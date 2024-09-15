@@ -27,6 +27,7 @@
             text-align: center;
         }
 
+        /* Contenedor del logo con fondo negro */
         .logo-container {
             background-color: rgb(68, 67, 67);
             display: block;
@@ -80,6 +81,7 @@
 </head>
 <body>
     <main>
+        <!-- Contenedor del logo con fondo negro -->
         <div class="logo-container">
             <img src="logito undis-02.png" alt="Undisputed Logo" class="logo">
         </div>
@@ -108,8 +110,9 @@
 
     <script>
         document.getElementById('compra-form').addEventListener('submit', function(e) {
-            e.preventDefault(); 
+            e.preventDefault(); // Evitar el envío normal del formulario
 
+            // Simular compra exitosa
             var nombre = document.getElementById('nombre').value;
             var direccion = document.getElementById('direccion').value;
 
