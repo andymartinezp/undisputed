@@ -111,9 +111,8 @@ main {
 }
 
 .featured-products h2, .sale-products h2, .shop-products h2, .moga-challenge h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
     font-size: 50px;
+    margin-bottom: 20px;
     font-family: 'Grande Italic';
 }
 
@@ -476,7 +475,7 @@ footer p {
 
 /* Media Queries para hacer la página responsive */
 @media (max-width: 1024px) {
-    .header, .footer-container {
+    header, .footer-container {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -497,7 +496,7 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .header {
+    header {
         padding: 10px 20px;
     }
 
@@ -518,7 +517,7 @@ footer p {
 }
 
 @media (max-width: 480px) {
-    .header, .footer-container {
+    header, .footer-container {
         flex-direction: column;
         align-items: center;
         padding: 10px;
