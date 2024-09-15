@@ -27,6 +27,43 @@
             color: #202020;
             font-weight: bold;
         }
+
+        .talle-select {
+            background-color: #f1f1f1;
+            border: 2px solid #004781fa;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            appearance: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .talle-select:focus {
+            outline: none;
+            border-color: #0868b6f1;
+            box-shadow: 0 0 10px rgba(8, 104, 182, 0.3);
+        }
+
+        .add-to-cart {
+            background-color: #004781fa;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0868b6f1;
+        }
     </style>
     <script>
         window.onload = function() {
@@ -35,23 +72,98 @@
                 alert("Debe iniciar sesión para acceder a esta página");
                 window.location.href = 'iniciarSesion.html';
             } else {
-                cargarProductos(); // Cargar los productos al inicio
+                cargarProductos(); 
             }
         };
 
-        // Función para mostrar/ocultar las opciones de filtro
-        function toggleFilterOptions() {
-            var filterOptions = document.getElementById('filter-options');
-            filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'block';
+        function cargarProductos() {
+            var productos = [
+                {
+                    "Nombre": "Hoodie",
+                    "Precio": 100,
+                    "foto": "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
+                },
+                {
+                    "Nombre": "Remera",
+                    "Precio": 50,
+                    "foto": "https://tuareq.com/cdn/shop/files/prueba-tuareq2.png?v=1706281192&width=1000"
+                },
+                {
+                    "Nombre": "Baggy",
+                    "Precio": 70,
+                    "foto": "https://www.paris.cl/dw/image/v2/BCHW_PRD/on/demandware.static/-/Sites-paris-marketplace/default/dw712aa8f4/images/imagenes-productos/800/MKCI/MKCI98ZD1X-0001-001.jpg"
+                },
+                {
+                    "Nombre": "Gorra",
+                    "Precio": 20,
+                    "foto": "https://img.freepik.com/fotos-premium/foto-gorra-negra-aislada-sobre-fondo-blanco-maqueta-plantilla-gorra-beisbol_131346-745.jpg"
+                },
+                {
+                    "Nombre": "BOXY",
+                    "Precio": 30,
+                    "foto": "https://acdn.mitiendanube.com/stores/001/177/291/products/blanca1-ea23ea61670a25bf7817134259034970-640-0.png"
+                },
+                {
+                    "Nombre": "Jeans",
+                    "Precio": 90,
+                    "foto": "https://codigodenim.com/uploads/photo/image/40569/A18411_TQBnhcxx.JPG"
+                }
+            ];
+
+            mostrarProductos(productos);
+            localStorage.setItem('productos', JSON.stringify(productos));
         }
 
-        // Función para mostrar/ocultar las opciones de ordenar
-        function toggleSortOptions() {
-            var sortOptions = document.getElementById('sort-options');
-            sortOptions.style.display = sortOptions.style.display === 'block' ? 'none' : 'block';
+        function mostrarProductos(productos) {
+            var contenedor = document.getElementById('productos-shop');
+            contenedor.innerHTML = ''; 
+
+            productos.forEach(function(producto) {
+                var productoDiv = document.createElement('div');
+                productoDiv.className = 'product';
+
+                var img = document.createElement('img');
+                img.src = producto.foto;
+                img.alt = producto.Nombre;
+
+                var nombre = document.createElement('h3');
+                nombre.textContent = producto.Nombre;
+
+                var precio = document.createElement('p');
+                precio.textContent = "$" + producto.Precio;
+
+                var talleLabel = document.createElement('label');
+                talleLabel.textContent = "Talle:";
+
+                var talleSelect = document.createElement('select');
+                talleSelect.id = `talle-${producto.Nombre}`;
+                talleSelect.className = 'talle-select';
+                var opcionesTalle = ["", "XS", "S", "M", "L", "XL", "XXL"];
+                opcionesTalle.forEach(function(talle) {
+                    var option = document.createElement('option');
+                    option.value = talle;
+                    option.textContent = talle;
+                    talleSelect.appendChild(option);
+                });
+
+                var addToCartBtn = document.createElement('button');
+                addToCartBtn.textContent = 'Añadir al carrito';
+                addToCartBtn.className = 'add-to-cart';
+                addToCartBtn.onclick = function() {
+                    agregarAlCarrito(producto);
+                };
+
+                productoDiv.appendChild(img);
+                productoDiv.appendChild(nombre);
+                productoDiv.appendChild(precio);
+                productoDiv.appendChild(talleLabel);
+                productoDiv.appendChild(talleSelect);
+                productoDiv.appendChild(addToCartBtn);
+
+                contenedor.appendChild(productoDiv);
+            });
         }
 
-        // Función para agregar un producto al carrito (validando la selección de talle)
         function agregarAlCarrito(producto) {
             var talleSelect = document.getElementById(`talle-${producto.Nombre}`);
             var talleSeleccionado = talleSelect.value;
@@ -61,13 +173,39 @@
                 return;
             }
 
-            producto.talle = talleSeleccionado;
+            producto.talle = talleSeleccionado; // Añadimos el talle seleccionado al producto
 
             var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            carrito.push(producto);
-            localStorage.setItem('carrito', JSON.stringify(carrito));
+            var productoExistente = carrito.find(item => item.Nombre === producto.Nombre && item.talle === producto.talle);
 
-            window.location.href = 'carrito.html';
+            if (!productoExistente) {
+                carrito.push(producto);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                alert("Producto añadido al carrito exitosamente");
+                window.location.href = 'carrito.html'; 
+            } else {
+                alert("Este producto ya está en el carrito con el mismo talle.");
+            }
+        }
+
+        function toggleFilterOptions() {
+            var filterOptions = document.getElementById('filter-options');
+            filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleSortOptions() {
+            var sortOptions = document.getElementById('sort-options');
+            sortOptions.style.display = sortOptions.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function ordenarPor(criterio) {
+            var productos = JSON.parse(localStorage.getItem('productos'));
+            if (criterio === 'mayorMenor') {
+                productos.sort((a, b) => b.Precio - a.Precio);
+            } else if (criterio === 'menorMayor') {
+                productos.sort((a, b) => a.Precio - b.Precio);
+            }
+            mostrarProductos(productos);
         }
     </script>
 </head>
@@ -102,10 +240,8 @@
             <div class="filters">
                 <button class="filter-btn" onclick="toggleFilterOptions()">Filtrar <img src="filter-512.webp" alt="Filter Icon"></button>
                 <div id="filter-options" class="filter-options">
-                    <p>Precio: Mayor a Menor</p>
-                    <p>Precio: Menor a Mayor</p>
-                    <p>Más vendidos</p>
-                    <p>Mejor valorados</p>
+                    <p onclick="ordenarPor('mayorMenor')">Precio: Mayor a Menor</p>
+                    <p onclick="ordenarPor('menorMayor')">Precio: Menor a Mayor</p>
                 </div>
 
                 <button class="sort-btn" onclick="toggleSortOptions()">Ordenar por <img src="Orden.png" alt="Sort Icon"></button>
@@ -119,6 +255,7 @@
             <div id="productos-shop" class="productos-container"></div>
         </section>
     </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -144,88 +281,5 @@
         </div>
     </footer>
 
-    <script>
-        function cargarProductos() {
-            var contenedor = document.getElementById('productos-shop');
-            contenedor.innerHTML = ''; 
-
-            var productos = [
-                {
-                    "Nombre": "Hoodie",
-                    "Precio": "$100",
-                    "foto": "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
-                },
-                {
-                    "Nombre": "Remera",
-                    "Precio": "$50",
-                    "foto": "https://tuareq.com/cdn/shop/files/prueba-tuareq2.png?v=1706281192&width=1000"
-                },
-                {
-                    "Nombre": "Baggy",
-                    "Precio": "$70",
-                    "foto": "https://www.paris.cl/dw/image/v2/BCHW_PRD/on/demandware.static/-/Sites-paris-marketplace/default/dw712aa8f4/images/imagenes-productos/800/MKCI/MKCI98ZD1X-0001-001.jpg"
-                },
-                {
-                    "Nombre": "Gorra",
-                    "Precio": "$20",
-                    "foto": "https://img.freepik.com/fotos-premium/foto-gorra-negra-aislada-sobre-fondo-blanco-maqueta-plantilla-gorra-beisbol_131346-745.jpg"
-                },
-                {
-                    "Nombre": "BOXY",
-                    "Precio": "$30",
-                    "foto": "https://acdn.mitiendanube.com/stores/001/177/291/products/blanca1-ea23ea61670a25bf7817134259034970-640-0.png"
-                },
-                {
-                    "Nombre": "Jeans",
-                    "Precio": "$90",
-                    "foto": "https://codigodenim.com/uploads/photo/image/40569/A18411_TQBnhcxx.JPG"
-                }
-            ];
-
-            productos.forEach(function(producto) {
-                var productoDiv = document.createElement('div');
-                productoDiv.className = 'product';
-
-                var img = document.createElement('img');
-                img.src = producto.foto;
-                img.alt = producto.Nombre;
-
-                var nombre = document.createElement('h3');
-                nombre.textContent = producto.Nombre;
-
-                var precio = document.createElement('p');
-                precio.textContent = producto.Precio;
-
-                // Agregar selector de talle
-                var talleLabel = document.createElement('label');
-                talleLabel.textContent = "Talle:";
-
-                var talleSelect = document.createElement('select');
-                talleSelect.id = `talle-${producto.Nombre}`;  // ID único por producto
-                var opcionesTalle = ["", "XS", "S", "M", "L", "XL", "XXL"];
-                opcionesTalle.forEach(function(talle) {
-                    var option = document.createElement('option');
-                    option.value = talle;
-                    option.textContent = talle;
-                    talleSelect.appendChild(option);
-                });
-
-                var addToCartBtn = document.createElement('button');
-                addToCartBtn.textContent = 'Añadir al carrito';
-                addToCartBtn.onclick = function() {
-                    agregarAlCarrito(producto);
-                };
-
-                productoDiv.appendChild(img);
-                productoDiv.appendChild(nombre);
-                productoDiv.appendChild(precio);
-                productoDiv.appendChild(talleLabel);
-                productoDiv.appendChild(talleSelect);
-                productoDiv.appendChild(addToCartBtn);
-
-                contenedor.appendChild(productoDiv);
-            });
-        }
-    </script>
 </body>
 </html>
