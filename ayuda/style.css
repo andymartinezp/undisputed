@@ -246,17 +246,6 @@ main {
 
 
 
-.upload-outfit input[type="file"] {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 20px;
-    background-color: #f9f9f9;
-    height: 400px; /* Ajusta la altura según lo necesites */
-    width: auto; /* Ajusta el ancho a automático para permitir que el alto predomine */
-    display: none;
-    margin: 0 auto; /* Centra el campo en el contenedor */
-}
 
 
 
@@ -291,21 +280,7 @@ main {
     margin: 0 auto; /* Centra el campo en el contenedor */
 }
 
-/* Estilo para el botón personalizado que reemplaza el input file */
-.custom-file-upload {
-    display: inline-flex;
-    cursor: pointer;
-    align-items: center;     /* Centra la imagen verticalmente dentro del contenedor */
-}
 
-
-.custom-file-upload img {
-    
-    width: 324px; /* Ajusta el tamaño del ícono según tus necesidades */
-    height: 367px; /* Mantiene la proporción del ícono */
-    margin-left: 365px; /* Ajusta el valor según necesites */
-
-}
 
 /* Opcional: estilo del ícono cuando se hace clic en él */
 .custom-file-upload:hover {
