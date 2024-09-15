@@ -473,7 +473,7 @@ footer p {
     background-color: #444444;
 }
 
-/* Media Queries para hacer la página responsive */
+
 @media (max-width: 1024px) {
     header, .footer-container {
         flex-direction: column;
