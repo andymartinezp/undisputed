@@ -19,13 +19,23 @@
             }
         };
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-links-visible');
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="logito undis-02.png" alt="Undisputed Logo">
+            <img src="../Logos/logito undis-Black.png" alt="Undisputed Logo">
         </div>
         <nav>
+            
             <ul class="nav-links">
                 <li><a href="index.html">INICIO</a></li>
                 <li><a href="shop.html">SHOP</a></li>
@@ -64,7 +74,7 @@
             </ul>
             <div class="atentamente">
                 <span>ATTE: UNDISPUTED <br> CREW</span>
-                <img src="obelisc.png" alt="Arrow">
+                <img src="../Logos/logito undis-white.png" alt="Arrow">
             </div>
         </section>
     </main>
@@ -83,56 +93,13 @@
                 <ul>
                     <li><a href="terminos.html">Términos y Condiciones</a></li>
                     <li><a href="privacidad.html">Política de Privacidad</a></li>
-                    <li><a href="devoluciones.html">Política de Devoluciones</a></li>
                 </ul>
             </div>
             <div class="footer-column footer-logo">
-                <img src="logito undis-01.png" alt="Logo">
-                <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
+                <img src="../Logos/logito undis-Black.png" alt="Logo">
+                <p>© 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </footer>
-    <script>
-        function cargarProductosDestacados() {
-            var contenedor = document.getElementById('productos-destacados');
-            contenedor.innerHTML = ''; 
-
-            var productosDestacados = [
-                {
-                    "Nombre": "Hoodie",
-                    "foto": "https://acdn.mitiendanube.com/stores/001/197/072/products/hoodie-baib-tour-remix-2023-negro-adelante21-0926bf47a524381f2616929029346001-640-0.png"
-                },
-                {
-                    "Nombre": "Remera",
-                    "foto": "https://tuareq.com/cdn/shop/files/prueba-tuareq2.png?v=1706281192&width=1000"
-                },
-                {
-                    "Nombre": "Baggy",
-                    "foto": "https://www.paris.cl/dw/image/v2/BCHW_PRD/on/demandware.static/-/Sites-paris-marketplace/default/dw712aa8f4/images/imagenes-productos/800/MKCI/MKCI98ZD1X-0001-001.jpg"
-                }
-            ];
-
-            productosDestacados.forEach(function(producto) {
-                var productoDiv = document.createElement('div');
-                productoDiv.className = 'product';
-
-                var img = document.createElement('img');
-                img.src = producto.foto;
-                img.alt = producto.Nombre;
-
-                var nombre = document.createElement('h3');
-                nombre.textContent = producto.Nombre;
-
-                var precio = document.createElement('p');
-                precio.textContent = producto.Precio;
-
-                productoDiv.appendChild(img);
-                productoDiv.appendChild(nombre);
-                productoDiv.appendChild(precio);
-
-                contenedor.appendChild(productoDiv);
-            });
-        }
-    </script>
 </body>
 </html>
