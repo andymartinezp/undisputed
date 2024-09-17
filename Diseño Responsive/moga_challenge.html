@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moga Challenge - Undisputed Clothing</title>
+    <script src="usuarios.js"></script>
+    <script src="productos.js"></script>
+    <script src="dinamicas.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.onload = function() {
+            var usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+            if (!usuarioLogueado) {
+                alert("Debe iniciar sesión para acceder a esta página");
+                window.location.href = 'iniciarSesion.html';
+            } else {
+                cargarDinamicas();
+            }
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../Logos/logito undis-Black.png" alt="Undisputed Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="sale.html">SALE</a></li>
+                <li><a href="moga_challenge.html">MOGA CHALLENGE</a></li>
+            </ul>
+        </nav>
+        <div class="search-and-icons">
+            <form id="search-form">
+                <input type="text" placeholder="Buscar" id="search-input">
+            </form>
+            <a href="iniciarSesion.html">
+                <img src="16467.png" alt="Iniciar Sesión" class="icon" onerror="this.style.display='none'">
+            </a>
+            <a href="carrito.html">
+                <img src="carrito.png" alt="Carrito" class="icon" onerror="this.style.display='none'">
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="moga-challenge">
+            <h1 class="moga-title">MAKE OUTFITS GREAT AGAIN</h1>
+            <h2 class="moga-subtitle">CHALLENGE</h2>
+            <div class="dinamicas-container" id="dinamicas-container"></div>
+        </section>
+        <section class="upload-outfit">
+            <h2>Sube tu Outfit</h2>
+            <form id="upload-form">
+                <label for="outfit-description">Descripción:</label>
+                <input type="text" id="outfit-description" required>
+                <label for="outfit-image">Imagen:</label>
+                <input type="file" id="outfit-image" accept="image/*" required>
+                <button type="button" onclick="subirOutfit()">Subir</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>AYUDA.</h3>
+                <ul>
+                    <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="envios.html">Envíos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>LEGALES.</h3>
+                <ul>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="devoluciones.html">Política de Devoluciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-logo">
+                <img src="../Logos/logito undis-Black.png" alt="Logo">
+                <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function cargarDinamicas() {
+            var contenedor = document.getElementById('dinamicas-container');
+            contenedor.innerHTML = ''; 
+
+            var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
+
+            dinamicas.forEach(function(dinamica, index) {
+                var dinamicaDiv = document.createElement('div');
+                dinamicaDiv.className = 'dinamica';
+
+                var img = document.createElement('img');
+                img.src = dinamica.imagen;
+                img.alt = dinamica.descripcion;
+
+                var descripcion = document.createElement('p');
+                descripcion.textContent = dinamica.descripcion;
+
+                var button = document.createElement('button');
+                button.textContent = 'Seleccionar como ganador';
+                button.onclick = function() {
+                    seleccionarGanador(index);
+                };
+
+                dinamicaDiv.appendChild(img);
+                dinamicaDiv.appendChild(descripcion);
+                dinamicaDiv.appendChild(button);
+
+                contenedor.appendChild(dinamicaDiv);
+            });
+        }
+
+        function subirOutfit() {
+            var descripcion = document.getElementById('outfit-description').value;
+            var imagen = document.getElementById('outfit-image').files[0];
+
+            if (descripcion && imagen) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var dinamicas = JSON.parse(localStorage.getItem('dinamicas')) || [];
+                    dinamicas.push({
+                        descripcion: descripcion,
+                        imagen: e.target.result
+                    });
+                    localStorage.setItem('dinamicas', JSON.stringify(dinamicas));
+                    cargarDinamicas();
+                    alert('Outfit subido exitosamente');
+                };
+                reader.readAsDataURL(imagen);
+            } else {
+                alert('Por favor, completa todos los campos');
+            }
+        }
+
+        function seleccionarGanador(index) {
+            var ganador = JSON.parse(localStorage.getItem('dinamicas'))[index];
+            alert('El ganador es: ' + ganador.descripcion);
+        }
+    </script>
+</body>
+</html>

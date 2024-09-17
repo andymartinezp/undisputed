@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Undisputed Clothing</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #202020;
+            color: white;
+            padding: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .seccion {
+            display: none;
+            margin-bottom: 40px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            color: #202020;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #202020;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #202020;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        footer nav ul li {
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Estilos adicionales para mejorar la apariencia */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .outfit-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+
+        .outfit-item img {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="mostrarSeccion('usuarios')">Administrar Usuarios</a></li>
+                <li><a href="#" onclick="mostrarSeccion('productos')">Administrar Productos</a></li>
+                <li><a href="#" onclick="mostrarSeccion('dinamicas')">Administrar Dinámicas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Sección de Usuarios -->
+        <section id="usuarios" class="seccion active">
+            <h2>Gestión de Usuarios</h2>
+            <form id="formAgregarUsuario">
+                <label for="nuevoMail">Mail:</label>
+                <input type="email" id="nuevoMail" required>
+                <label for="nuevaContraseña">Contraseña:</label>
+                <input type="password" id="nuevaContraseña" required>
+                <label for="nuevoRol">Rol:</label>
+                <select id="nuevoRol" required>
+                    <option value="1">Administrador</option>
+                    <option value="2">Cliente</option>
+                </select>
+                <button type="button" onclick="agregarUsuario()">Añadir Usuario</button>
+            </form>
+
+            <form id="formEditarUsuario">
+                <label for="editarMail">Seleccionar Usuario:</label>
+                <select id="editarMail"></select>
+
+                <label for="editarNuevaContraseña">Nueva Contraseña:</label>
+                <input type="password" id="editarNuevaContraseña">
+                
+                <label for="editarNuevoRol">Nuevo Rol:</label>
+                <select id="editarNuevoRol">
+                    <option value="1">Administrador</option>
+                    <option value="2">Cliente</option>
+                </select>
+                <div class="btn-group">
+                    <button type="button" onclick="editarUsuario()">Editar Usuario</button>
+                    <button type="button" onclick="eliminarUsuario()">Eliminar Usuario</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Sección de Productos -->
+        <section id="productos" class="seccion">
+            <h2>Control de Productos</h2>
+
+            <!-- Agregar Producto -->
+            <form onsubmit="agregarProducto(); return false;">
+                <label for="nombreProducto">Nombre:</label>
+                <input type="text" id="nombreProducto" required>
+
+                <label for="precioProducto">Precio:</label>
+                <input type="number" id="precioProducto" required>
+
+                <label for="fotoProducto">URL de la Foto:</label>
+                <input type="text" id="fotoProducto" required>
+
+                <label for="stockProducto">Stock:</label>
+                <input type="number" id="stockProducto" required>
+
+                <button type="submit">Agregar Producto</button>
+            </form>
+
+            <!-- Editar Producto -->
+            <form>
+                <label for="editarNombreProducto">Seleccionar Producto:</label>
+                <select id="editarNombreProducto"></select>
+
+                <label for="editarNuevoNombre">Nuevo Nombre:</label>
+                <input type="text" id="editarNuevoNombre">
+
+                <label for="editarNuevoPrecio">Nuevo Precio:</label>
+                <input type="number" id="editarNuevoPrecio">
+
+                <label for="editarNuevaFoto">Nueva URL de la Foto:</label>
+                <input type="text" id="editarNuevaFoto">
+
+                <label for="editarNuevoStock">Nuevo Stock:</label>
+                <input type="number" id="editarNuevoStock">
+
+                <div class="btn-group">
+                    <button type="button" onclick="editarProducto()">Editar Producto</button>
+                    <button type="button" onclick="eliminarProducto()">Eliminar Producto</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Sección de Dinámicas -->
+        <section id="dinamicas" class="seccion">
+            <h2>Administrar Dinámicas</h2>
+            <h3>Crear Nueva Dinámica</h3>
+            <form id="dinamica-form">
+                <label for="dinamicaTitulo">Título:</label>
+                <input type="text" id="dinamicaTitulo" required>
+
+                <label for="dinamicaDescripcion">Descripción:</label>
+                <textarea id="dinamicaDescripcion" required></textarea>
+                <button type="submit">Crear Dinámica</button>
+            </form>
+
+            <h3>Outfits Subidos</h3>
+            <div id="outfitsSubidos"></div>
+
+            <button type="button" onclick="renovarDinamica()">Renovar Dinámica</button>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="envios.html">Envíos</a></li>
+                <li><a href="terminos.html">Términos y Condiciones</a></li>
+                <li><a href="privacidad.html">Política de Privacidad</a></li>
+                <li><a href="devoluciones.html">Política de Devoluciones</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="admin.js"></script>
+    <script>
+        function mostrarSeccion(seccionId) {
+            var secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('active');
+            });
+            document.getElementById(seccionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
