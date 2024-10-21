@@ -268,5 +268,16 @@
             document.getElementById(seccionId).classList.add('active');
         }
     </script>
+    <script>
+        window.onload = function() {
+            var usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+            
+            if (!usuarioLogueado || usuarioLogueado.role !== "admin") {
+                alert("Acceso denegado. Redirigiendo a la página de inicio.");
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+    
 </body>
 </html>
