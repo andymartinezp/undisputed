@@ -1,13 +1,14 @@
 @font-face {
     font-family: 'Grande Italic';
-    src: url('fonts/grande_italic.ttf') format('truetype');
+    src: url('fonts/grande_italic.ttf.ttf') format('truetype');
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #f8f5f5;
+    background-color: #ffffff;
     font-size: 18px;
+    background-color: #f8f5f5;
 }
 
 header {
@@ -79,7 +80,13 @@ nav ul li a:hover {
     height: 24px;
     margin-left: 10px;
     cursor: pointer;
+
+
+    
 }
+
+
+
 
 main {
     padding: 20px;
@@ -104,18 +111,12 @@ main {
     font-family: 'Grande Italic';
 }
 
-.featured-products, 
-.sale-products, 
-.shop-products, 
-.moga-challenge {
+.featured-products, .sale-products, .shop-products, .moga-challenge {
     margin: 10px 0;
     text-align: center;
 }
 
-.featured-products h2, 
-.sale-products h2, 
-.shop-products h2, 
-.moga-challenge h2 {
+.featured-products h2, .sale-products h2, .shop-products h2, .moga-challenge h2 {
     font-size: 50px;
     margin-bottom: 20px;
     font-family: 'Grande Italic';
@@ -127,8 +128,7 @@ main {
     margin-bottom: 20px;
 }
 
-.filter-btn, 
-.sort-btn {
+.filter-btn, .sort-btn {
     background-color: #6e6e6e;
     color: #ffffff;
     border: none;
@@ -140,25 +140,20 @@ main {
     align-items: center;
 }
 
-.filter-btn img, 
-.sort-btn img {
+.filter-btn img, .sort-btn img {
     margin-left: 10px;
     width: 16px;
     height: 16px;
 }
 
-#productos-destacados, 
-#productos-sale, 
-#productos-shop, 
-#dinamicas-container {
+#productos-destacados, #productos-sale, #productos-shop, #dinamicas-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     font-family: Helvetica, sans-serif;
 }
 
-.product, 
-.dinamica {
+.product, .dinamica {
     border: 4px solid #004781fa;
     box-sizing: border-box;
     padding: 20px;
@@ -170,15 +165,13 @@ main {
     background-color: rgb(255, 255, 255);
 }
 
-.product img, 
-.dinamica img {
+.product img, .dinamica img {
     max-width: 100%;
     height: 450px;
     object-fit: cover;
 }
 
-.product h3, 
-.dinamica p {
+.product h3, .dinamica p {
     margin: 15px 0;
     font-size: 30px;
     text-transform: uppercase;
@@ -258,7 +251,9 @@ main {
     margin: 20px 0;
     text-align: left;
     padding: 20px;
-    background: url('background-cuidados.jpg') center/cover;
+    background: url('background-cuidados.jpg');
+    background-size: cover;
+    background-position: center;
     color: #000000;
     position: relative;
 }
