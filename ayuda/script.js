@@ -29,7 +29,7 @@ var productos = [
     {
         "Nombre": "BOXY",
         "Precio": 30,
-        "foto": "https://acdn.mitiendanube.com/stores/001/177/291/products/blanca1-ea23ea61670a25bf7817134259034970-640-0.png"
+        "foto": "https://acdn.mitiendanube.com/stores/001/264/817/products/mock-upss-nuevos-12-4c2faaf3e58a0ffb5316999105017629-640-0.png"
     },
     {
         "Nombre": "Jeans",

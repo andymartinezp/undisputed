@@ -65,7 +65,7 @@ function cargarProductosEnOferta() {
             "Nombre": "Boxy en Oferta",
             "Precio": "$25",
             "PrecioOriginal": "$30",
-            "foto": "https://acdn.mitiendanube.com/stores/001/177/291/products/boxyclassicblanca-espalda-16afc9b372cb4899c417138285399209-640-0.png"
+            "foto": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.notteclothing.com.ar%2Fproductos%2Fremeras-boxy-fit-pack-x3%2F&psig=AOvVaw04jpISSpQvnp5SnepAwabt&ust=1729724232456000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCOiu34WLo4kDFQAAAAAdAAAAABAn"
         },
         {
             "Nombre": "Jeans en Oferta",

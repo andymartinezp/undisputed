@@ -33,7 +33,7 @@ async function registrarUsuario() {
 
     try {
         const usuarios = await obtenerUsuarios();
-        console.log(usuarios)
+        console.log
         const usuarioExistente = usuarios.record.find(usuario => usuario.email === email);
 
         if (usuarioExistente) {
