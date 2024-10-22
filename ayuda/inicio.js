@@ -25,14 +25,15 @@ async function ingresar() {
 
     try {
         const usuarios = await obtenerUsuarios();
-
-        for (let index = 0; index < usuarios.length; index++) {
-            if (usuarios[index].email == mail && usuarios[index].password == contraseña) {
+    
+        for (let index = 0; index < usuarios.record.length; index++) {
+         
+            if (usuarios.record[index].email == mail && usuarios.record[index].password == contraseña) {
             //    localStorage.setItem('usuarioLogueado', JSON.stringify(usuarios[index]));
                 
-                if (usuarios[index].role == "admin") {
+                if (usuarios.record[index].role == "admin") {
                     window.location.href = 'admin.html';
-                } else if (usuarios[index].role == "user") {
+                } else if (usuarios.record[index].role == "user") {
                     window.location.href = 'index.html';
                 }
                 return; 

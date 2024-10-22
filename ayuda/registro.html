@@ -7,27 +7,75 @@
     <script src="usuarios.js"></script>
     <link rel="stylesheet" href="style.css">
     <script>
-        function registrarUsuario() {
-            var email = document.getElementById('registroEmail').value;
-            var password = document.getElementById('registroPassword').value;
+const BIN_ID = '670ee730ad19ca34f8b928d3'; 
+const API_KEY = '$2a$10$zaTWFqunWHdxu.77OT5PiOP9OPqM.3KSWEM0APN1ADkZw5mkzwJXK'; 
 
-            var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            var usuarioExistente = usuarios.find(usuario => usuario.mail === email);
-
-            if (usuarioExistente) {
-                alert("El email ya está registrado");
-            } else {
-                var nuevoUsuario = {
-                    mail: email,
-                    contraseña: password,
-                    rol: 3 
-                };
-                usuarios.push(nuevoUsuario);
-                localStorage.setItem('usuarios', JSON.stringify(usuarios));
-                alert("Registro exitoso. Ahora puede iniciar sesión");
-                window.location.href = 'iniciarSesion.html';
-            }
+async function obtenerUsuarios() {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': API_KEY
         }
+    });
+    
+    if (!response.ok) {
+        throw new Error('Error al obtener usuarios');
+    }
+
+    const data = await response.json();
+    return data.record; 
+} 
+
+async function registrarUsuario() {
+    const email = document.getElementById('registroEmail').value;
+    const password = document.getElementById('registroPassword').value;
+
+    try {
+        const usuarios = await obtenerUsuarios();
+        console.log
+        const usuarioExistente = usuarios.record.find(usuario => usuario.email === email);
+
+        if (usuarioExistente) {
+            alert("El email ya está registrado");
+            return; // Salimos de la función si el usuario ya existe
+        }
+
+        const nuevoUsuario = {
+            email: email,
+            password: password,
+            role: 'user' // Cambia esto según sea necesario
+        };
+
+        // Guardar el nuevo usuario en la API
+        await guardarUsuario(nuevoUsuario);
+
+        alert("Registro exitoso. Puedes iniciar sesión ahora.");
+        window.location.href = 'iniciarSesion.html';
+    } catch (error) {
+        console.error(error);
+        alert('Ha ocurrido un error. Intenta de nuevo más tarde.');
+    }
+}
+
+async function guardarUsuario(usuario) {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': API_KEY
+        },
+        body: JSON.stringify({
+            record: [...await obtenerUsuarios(), usuario] // Agrega el nuevo usuario a la lista existente
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al guardar el nuevo usuario');
+    }
+}
+
+
     </script>
 </head>
 <body>
