@@ -81,6 +81,13 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+.carritovich {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 main {
     padding: 20px;
 }
@@ -283,6 +290,8 @@ main {
     right: 20px;
     display: flex;
     align-items: center;
+    padding-left: 1200px;
+
 }
 
 .info .atentamente img {

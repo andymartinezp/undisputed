@@ -134,7 +134,7 @@ function renovarDinamica() {
 }
 
 window.onload = function() {
-    verificarAutenticacionAdmin();
+  
     cargarUsuarios(); 
     cargarProductos();
     cargarOutfits(); 
