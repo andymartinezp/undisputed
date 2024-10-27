@@ -306,7 +306,7 @@ main {
 }
 
 footer {
-    background-color: #004781fa;
+    background-color: #ccccccf1;
     color: #000000;
     padding: 20px 0;
     text-align: center;
@@ -330,7 +330,7 @@ footer {
 .footer-column h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .footer-column ul {
@@ -344,7 +344,7 @@ footer {
 }
 
 .footer-column ul li a {
-    color: #c4c2c2;
+    color: #646464;
     text-decoration: none;
     font-size: 14px;
 }
