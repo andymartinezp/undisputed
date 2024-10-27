@@ -6,8 +6,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f8f5f5;
+    background-color: #ffffff;
     font-size: 18px;
+    background-color: #f8f5f5;
 }
 
 header {
@@ -79,14 +80,13 @@ nav ul li a:hover {
     height: 24px;
     margin-left: 10px;
     cursor: pointer;
+
+
+    
 }
 
-.carritovich {
-    width: 35px;
-    height: 35px;
-    margin-left: 10px;
-    cursor: pointer;
-}
+
+
 
 main {
     padding: 20px;
@@ -290,8 +290,6 @@ main {
     right: 20px;
     display: flex;
     align-items: center;
-    padding-left: 1200px;
-
 }
 
 .info .atentamente img {
@@ -425,6 +423,7 @@ footer p {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .product-info .add-to-cart:hover {
@@ -473,6 +472,7 @@ footer p {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .cart-total button:hover {
@@ -494,12 +494,10 @@ footer p {
 
     .filters {
         flex-direction: column;
-        margin-bottom: 20px;
     }
 
     .product, .dinamica {
-        width: calc(50% - 40px); /* Mantener el diseño en 2 columnas */
-        margin: 10px 0;
+        width: calc(50% - 40px);
     }
 }
 
@@ -519,68 +517,43 @@ footer p {
     }
 
     .product, .dinamica {
-        width: 100%; /* Ajustar a una sola columna en pantallas más pequeñas */
+        width: 100%;
         margin: 10px 0;
-    }
-
-    .banner {
-        height: auto; /* Ajustar automáticamente la altura */
-        padding: 20px;
-    }
-
-    .banner h2 {
-        font-size: 20px; /* Ajustar tamaño de fuente */
     }
 }
 
 @media (max-width: 480px) {
     header, .footer-container {
+        flex-direction: column;
+        align-items: center;
         padding: 10px;
     }
 
     .banner {
-        height: auto; /* Ajustar automáticamente la altura */
+        height: 60vh;
     }
 
     .banner h2 {
         font-size: 18px;
-        padding: 10px; /* Espaciado adicional */
     }
 
     .product h3, .dinamica p {
-        font-size: 16px; /* Tamaño de fuente más pequeño */
+        font-size: 20px;
     }
 
     .product img, .dinamica img {
-        height: auto; /* Mantener proporciones */
-        max-width: 100%; /* Asegurar que no exceda el contenedor */
+        height: 300px;
     }
 
     .product p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .moga-title {
-        font-size: 28px;
+        font-size: 40px;
     }
 
     .moga-subtitle {
-        font-size: 16px;
-    }
-
-    .cart-preview {
-        padding: 15px;
-    }
-
-    .cart-item img {
-        max-width: 40px;
-    }
-
-    .cart-total p {
-        font-size: 16px;
-    }
-
-    .cart-total button {
-        padding: 8px 16px;
+        font-size: 20px;
     }
 }
