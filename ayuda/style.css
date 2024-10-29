@@ -122,6 +122,14 @@ main {
     font-family: 'Grande Italic';
 }
 
+.featured-products a {
+       color: black; 
+    }
+    
+.featured-products a:visited {
+        color: black; 
+    }
+
 .filters {
     display: flex;
     justify-content: center;
