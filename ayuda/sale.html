@@ -78,33 +78,50 @@
             background-color: #0868b6f1;
         }
     </style>
-    <script>
-    </script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="../Logos/logito undis-Black.png" alt="Undisputed Logo">
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">INICIO</a></li>
-                <li><a href="shop.html">SHOP</a></li>
-                <li><a href="sale.html">SALE</a></li>
-                <li><a href="moga_challenge.html">MOGACHALLENGE</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="logo">
+                <img src="logito undis-Black.png" alt="Undisputed Logo">
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sale.html">SALE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="moga_challenge.html">MOGACHALLENGE</a>
+                    </li>
+                    <li>
+                        <div class="search-and-icons">
+                            <form id="search-form">
+                                <input type="text" placeholder="Buscar" id="search-input">
+                            </form>
+                            <a href="iniciarSesion.html">
+                                <img src="16467.png" alt="Iniciar Sesión" class="icon" onerror="this.style.display='none'">
+                            </a>
+                            <a href="carrito.html">
+                                <img src="carrito.png" alt="Carrito" class="carritovich" onerror="this.style.display='none'">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </nav>
-        <div class="search-and-icons">
-            <form id="search-form">
-                <input type="text" placeholder="Buscar" id="search-input">
-            </form>
-            <a href="iniciarSesion.html">
-                <img src="16467.png" alt="Iniciar Sesión" class="icon" onerror="this.style.display='none'">
-            </a>
-            <a href="carrito.html">
-                <img src="carrito.png" alt="Carrito" class="carritovich" onerror="this.style.display='none'">
-            </a>
-        </div>
     </header>
     <main>
         <section class="sale-products">
@@ -148,7 +165,7 @@
                 </ul>
             </div>
             <div class="footer-column footer-logo">
-                <img src="../Logos/logito undis-Black.png" alt="Logo">
+                <img src="logito undis-Black.png" alt="Logo">
                 <p>&copy; 2024 UNDISPUTED CLOTHING. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
@@ -176,7 +193,7 @@
                     "Nombre": "Baggy en Oferta",
                     "Precio": "$60",
                     "PrecioOriginal": "$70",
-                    "foto": "https://oldtree.cl/wp-content/uploads/2023/10/old-tree-baggy-pant-lighblue.jpg"
+                    "foto": "https://www.indy.com.ar/cdn/shop/files/jean-dc-wrk-baggy-blue-azul-indy-1.jpg?v=1701291237"
                 },
                 {
                     "Nombre": "Gorra en Oferta",

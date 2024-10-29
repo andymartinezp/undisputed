@@ -8,6 +8,16 @@
     <script src="productos.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!--en el head de todo va esto -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--en el head de todo va esto -->
+
+
+    
     <script>/*
         window.onload = function() {
             var usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
@@ -40,29 +50,47 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="logito undis-Black.png" alt="Undisputed Logo">
-        </div>
-        <nav>
-            
-            <ul class="nav-links">
-                <li><a href="index.html">INICIO</a></li>
-                <li><a href="shop.html">SHOP</a></li>
-                <li><a href="sale.html">SALE</a></li>
-                <li><a href="moga_challenge.html">MOGACHALLENGE</a></li>
-            </ul>
+           <!--en el header de todo va esto -->
+
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="logo">
+                <img src="logito undis-Black.png" alt="Undisputed Logo">
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sale.html">SALE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="moga_challenge.html">MOGACHALLENGE</a>
+                    </li>
+                    <li>
+                        <div class="search-and-icons">
+                            <form id="search-form">
+                                <input type="text" placeholder="Buscar" id="search-input">
+                            </form>
+                            <a href="iniciarSesion.html">
+                                <img src="16467.png" alt="Iniciar Sesión" class="icon" onerror="this.style.display='none'">
+                            </a>
+                            <a href="carrito.html">
+                                <img src="carrito.png" alt="Carrito" class="carritovich" onerror="this.style.display='none'">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </nav>
-        <div class="search-and-icons">
-            <form id="search-form">
-                <input type="text" placeholder="Buscar" id="search-input">
-            </form>
-            <a href="iniciarSesion.html">
-                <img src="16467.png" alt="Iniciar Sesión" class="icon" onerror="this.style.display='none'">
-            </a>
-            <a href="carrito.html">
-                <img src="carrito.png" alt="Carrito" class="carritovich" onerror="this.style.display='none'">
-            </a>
-        </div>
+           <!--en el header de todo va esto -->
+
     </header>
     <main>
         <section class="banner">
@@ -83,7 +111,7 @@
             </ul>
             <div class="atentamente">
                 <span>ATTE: UNDISPUTED <br> CREW</span>
-                <img src="../Logos/logito undis-white.png" alt="Arrow">
+                <img src="obelisc.png" alt="Arrow">
             </div>
         </section>
     </main>
