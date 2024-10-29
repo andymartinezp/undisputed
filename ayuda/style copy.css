@@ -6,25 +6,22 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #ffffff;
+    font-size: 18px;
     background-color: #f8f5f5;
-    font-size: 16px;
 }
 
 header {
-    background-color: #ccccccf1;
-    color: #000000;
+    background-color: #0868b6f1;
+    color: #ffffff;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    padding-right: 80px;
-    padding-left: 20px;
-
+    padding: 10px 40px;
 }
 
 header .logo img {
-    height: 40px;
-    padding-left: 10px;
+    height: 50px;
 }
 
 nav ul {
@@ -43,7 +40,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     padding: 5px 30px;
@@ -52,13 +49,17 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #ffffff;
+    background-color: #000000;
     border-radius: 5px;
 }
 
 .search-and-icons {
     display: flex;
     align-items: center;
+}
+
+.search-and-icons form {
+    margin-right: 10px;
 }
 
 .search-and-icons input {
@@ -84,12 +85,8 @@ nav ul li a:hover {
     
 }
 
-.carritovich {
-    width: 35px;
-    height: 35px;
-    margin-left: 10px;
-    cursor: pointer;
-}
+
+
 
 main {
     padding: 20px;
@@ -124,14 +121,6 @@ main {
     margin-bottom: 20px;
     font-family: 'Grande Italic';
 }
-
-.featured-products a {
-       color: black; 
-    }
-    
-.featured-products a:visited {
-        color: black; 
-    }
 
 .filters {
     display: flex;
@@ -211,14 +200,6 @@ main {
     color: #000000;
 }
 
-.moga-subtitle2 {
-    font-size: 20px;
-    font-weight: normal;
-    text-transform: uppercase;
-    margin: 10px 0;
-    color: #000000;
-}
-
 .upload-outfit {
     margin: 20px 0;
     text-align: left;
@@ -265,11 +246,6 @@ main {
     transition: background-color 0.5s ease;
 }
 
-.OutfitsMOGAEj {
-    width: 300px; 
-    height: auto; 
-}
-
 .info {
     font-family: Helvetica, sans-serif;
     margin: 20px 0;
@@ -314,17 +290,16 @@ main {
     right: 20px;
     display: flex;
     align-items: center;
-    padding-left: 1000px;
-
 }
 
 .info .atentamente img {
-    height: 100px;
-    width: 100%;
+    height: 30px;
+    width: 27%;
+    height: 40%;
 }
 
 footer {
-    background-color: #ccccccf1;
+    background-color: #004781fa;
     color: #000000;
     padding: 20px 0;
     text-align: center;
@@ -348,7 +323,7 @@ footer {
 .footer-column h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .footer-column ul {
@@ -362,7 +337,7 @@ footer {
 }
 
 .footer-column ul li a {
-    color: #020202;
+    color: #c4c2c2;
     text-decoration: none;
     font-size: 14px;
 }
@@ -379,7 +354,7 @@ footer {
 footer p {
     margin: 10px 0 0;
     font-size: 14px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .product p {
@@ -448,6 +423,7 @@ footer p {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .product-info .add-to-cart:hover {
@@ -496,6 +472,7 @@ footer p {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .cart-total button:hover {
@@ -517,12 +494,10 @@ footer p {
 
     .filters {
         flex-direction: column;
-        margin-bottom: 20px;
     }
 
     .product, .dinamica {
-        width: calc(50% - 40px); /* Mantener el diseño en 2 columnas */
-        margin: 10px 0;
+        width: calc(50% - 40px);
     }
 }
 
@@ -542,68 +517,43 @@ footer p {
     }
 
     .product, .dinamica {
-        width: 100%; /* Ajustar a una sola columna en pantallas más pequeñas */
+        width: 100%;
         margin: 10px 0;
-    }
-
-    .banner {
-        height: auto; /* Ajustar automáticamente la altura */
-        padding: 20px;
-    }
-
-    .banner h2 {
-        font-size: 20px; /* Ajustar tamaño de fuente */
     }
 }
 
 @media (max-width: 480px) {
     header, .footer-container {
+        flex-direction: column;
+        align-items: center;
         padding: 10px;
     }
 
     .banner {
-        height: auto; /* Ajustar automáticamente la altura */
+        height: 60vh;
     }
 
     .banner h2 {
         font-size: 18px;
-        padding: 10px; /* Espaciado adicional */
     }
 
     .product h3, .dinamica p {
-        font-size: 16px; /* Tamaño de fuente más pequeño */
+        font-size: 20px;
     }
 
     .product img, .dinamica img {
-        height: auto; /* Mantener proporciones */
-        max-width: 100%; /* Asegurar que no exceda el contenedor */
+        height: 300px;
     }
 
     .product p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .moga-title {
-        font-size: 28px;
+        font-size: 40px;
     }
 
     .moga-subtitle {
-        font-size: 16px;
-    }
-
-    .cart-preview {
-        padding: 15px;
-    }
-
-    .cart-item img {
-        max-width: 40px;
-    }
-
-    .cart-total p {
-        font-size: 16px;
-    }
-
-    .cart-total button {
-        padding: 8px 16px;
+        font-size: 20px;
     }
 }
