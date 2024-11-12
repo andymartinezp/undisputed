@@ -150,6 +150,9 @@ main {
     align-items: center;
 }
 
+
+
+
 .filter-btn img, .sort-btn img {
     margin-left: 10px;
     width: 16px;
@@ -600,6 +603,16 @@ font-size: 25px;
 
 
  }
+
+ .atentamente span  {
+
+    font-family: 10px ;
+    
+    
+    
+ }
+
+ 
 
     .banner {
         height: auto; /* Ajustar automáticamente la altura */
