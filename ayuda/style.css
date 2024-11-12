@@ -564,6 +564,16 @@ footer p {
         padding: 10px;
     }
 
+    .info h2 {
+
+        font-family: 9px;
+
+
+
+    }
+
+
+
     .banner {
         height: auto; /* Ajustar automáticamente la altura */
     }
@@ -590,14 +600,7 @@ footer p {
 
      }
 
-     .info  {
-
-        font-family: 9px;
-
-
-
-    }
-
+    
     .product p {
         font-size: 14px;
     }
