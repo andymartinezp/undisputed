@@ -582,6 +582,14 @@ footer p {
         max-width: 100%; /* Asegurar que no exceda el contenedor */
     }
 
+    .featured-products h2 a  {
+
+     font-family: 10px;
+
+
+
+     }
+
     .product p {
         font-size: 14px;
     }
