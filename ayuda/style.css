@@ -24,6 +24,7 @@ header {
 
 }
 
+
 header .logo img {
     height: 40px;
     padding-left: 10px;
@@ -289,6 +290,8 @@ main {
     color: #000000;
     position: relative;
 }
+
+
 
 .info h2 {
     font-size: 80px;
@@ -604,13 +607,15 @@ font-size: 25px;
 
  }
 
- .atentamente span  {
+ 
+.atentamente span  {
 
-    font-family: 10px ;
-    
-    
-    
- }
+    font-size: 8px;
+     
+     
+     
+  }
+ 
 
  
 
