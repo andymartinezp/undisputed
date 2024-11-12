@@ -589,6 +589,16 @@ font-size: 25px;
 
  }
 
+
+ .info ul li{  
+
+    font-size: 14px;
+ 
+
+
+
+ }
+
     .banner {
         height: auto; /* Ajustar automáticamente la altura */
     }
