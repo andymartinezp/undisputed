@@ -580,6 +580,15 @@ font-size: 25px;
 
  }
 
+ .info h2 p{  
+
+    font-size: 15px;
+ 
+
+
+
+ }
+
     .banner {
         height: auto; /* Ajustar automáticamente la altura */
     }
