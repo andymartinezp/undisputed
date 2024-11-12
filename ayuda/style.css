@@ -117,7 +117,7 @@ main {
 }
 
 .featured-products h2, .sale-products h2, .shop-products h2, .moga-challenge h2 {
-    font-size: 50px;
+    font-size: 30px;
     margin-bottom: 20px;
     font-family: 'Grande Italic';
 }
