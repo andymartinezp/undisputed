@@ -8,7 +8,7 @@ body {
     padding: 0;
     background-color: #f8f5f5;
     font-size: 16px;
-    overflow-x: hidden; /* Evita el scroll horizontal */
+    overflow-x: hidden; 
 }
 
 
@@ -20,7 +20,7 @@ header {
     align-items: center;
     padding: 10px;
     padding-right: 80px;
-    padding-left: 20px;
+    padding-left: 40px;
 
 }
 
@@ -65,7 +65,7 @@ nav ul li a:hover {
 }
 
 .search-and-icons input {
-    padding: 5px;
+    padding: 10px;
     border-radius: 1px;
     border: 2px solid #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
@@ -80,15 +80,15 @@ nav ul li a:hover {
 .icon {
     width: 24px;
     height: 24px;
-    margin-left: 10px;
     cursor: pointer;  
+    margin-left: 200px;
 }
 
 .carritovich {
     width: 35px;
     height: 35px;
-    margin-left: 10px;
     cursor: pointer;
+    margin-left: 200px;
 }
 
 main {
@@ -97,7 +97,7 @@ main {
 
 .banner {
     position: relative;
-    background-image: url('https://imgur.com/dTxdq41');
+    background-image: url('banner\ de\ la\ home.jpg');
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -272,11 +272,17 @@ main {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    height: 60vh; 
+    height: 73vh; 
 }
 
 .OutfitsMOGAEj {
-    width: 1400px; 
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 75vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .info {
@@ -390,7 +396,7 @@ footer {
 footer p {
     margin: 10px 0 0;
     font-size: 14px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .product p {
