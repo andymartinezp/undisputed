@@ -527,14 +527,16 @@ footer p {
         text-align: center;
     }
     .OutfitsMOGAEj {
+        height: calc(100vh - 50px);
         position: relative;
         background-size: cover;
         background-position: center;
-        height: 20vh;
+        
         display: flex;
         align-items: flex-end;
         justify-content: center;
         margin-top: -20px;
+        
     }
     .search-and-icons {
         justify-content: center;
