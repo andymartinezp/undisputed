@@ -269,10 +269,12 @@ main {
 }
 
 .containerMOGA {
-    display: block; 
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 73vh; /* Conserva la altura que ya definiste */
+    margin: 0 auto; /* Centra si hay espacio extra */
+    display: flex; /* Cambia a flexbox si necesitas centrar contenido */
     justify-content: center; 
-    align-items: center; 
-    height: 73vh; 
+    align-items: center;
 }
 
 .OutfitsMOGAEj {
