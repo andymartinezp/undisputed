@@ -589,12 +589,17 @@ footer p {
         width: 100%; /* Ajustar a una sola columna en pantallas más pequeñas */
         margin: 10px 0;
     }
-
     .banner {
-        height: auto; /* Ajustar automáticamente la altura */
-        padding: 20px;
+        position: relative;
+        background-image: url('banner\ de\ la\ home.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 80vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
     }
-
+    
     .banner h2 {
         font-size: 20px; /* Ajustar tamaño de fuente */
     }
