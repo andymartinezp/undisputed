@@ -550,15 +550,10 @@ footer p {
         margin-top: 10px;
     }
     .containerMOGA {
-        position: relative;
-       
-        background-size: cover;
-        background-position: center;
-        height: 80vh;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-    }
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 30vh; 
     }
     
 
