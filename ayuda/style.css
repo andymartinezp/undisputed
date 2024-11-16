@@ -526,7 +526,16 @@ footer p {
         align-items: center;
         text-align: center;
     }
-
+    .OutfitsMOGAEj {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        height: 20vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-top: -20px;
+    }
     .search-and-icons {
         justify-content: center;
         margin-top: 10px;
@@ -572,6 +581,7 @@ footer p {
         font-size: 20px; /* Ajustar tamaño de fuente */
     }
 }
+
 
 @media (max-width: 480px) {
     header, .footer-container {
@@ -729,14 +739,4 @@ footer {
 .footer-column ul li a:hover {
     text-decoration: underline;
 }
-.OutfitsMOGAEj {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 20vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin: 0; /* Asegúrate de que no haya margen */
-    padding: 0; /* Elimina posibles rellenos */
-}
+
