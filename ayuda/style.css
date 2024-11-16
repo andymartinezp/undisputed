@@ -558,11 +558,15 @@ footer p {
     header {
         padding: 10px 20px;
     }
-    main {
+    
         main {
-            padding: 2px;
+       
+            
+            margin: 0;
+            padding: 0;
+            height: auto;
         }
-    }
+
 
     nav ul.nav-links {
         flex-direction: column;
