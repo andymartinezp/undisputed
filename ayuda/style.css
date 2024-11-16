@@ -269,10 +269,10 @@ main {
 }
 
 .containerMOGA {
-    display: flex; 
+    display: block; 
     justify-content: center; 
     align-items: center; 
-    height: 73vh; 
+    height: 10vh; 
 }
 
 .OutfitsMOGAEj {
