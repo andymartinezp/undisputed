@@ -737,5 +737,6 @@ footer {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    margin-top: -20px;
+    margin: 0; /* Asegúrate de que no haya margen */
+    padding: 0; /* Elimina posibles rellenos */
 }
