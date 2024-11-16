@@ -272,7 +272,7 @@ main {
     display: block; 
     justify-content: center; 
     align-items: center; 
-    height: 10vh; 
+    height: 73vh; 
 }
 
 .OutfitsMOGAEj {
@@ -542,6 +542,13 @@ footer p {
         justify-content: center;
         margin-top: 10px;
     }
+    .containerMOGA {
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 50vh; 
+    }
+    
 
     .filters {
         flex-direction: column;
