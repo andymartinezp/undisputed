@@ -605,7 +605,12 @@ main {
     padding: 20px;
 }
 
+.productos-conteiner {
 
+
+padding: 20px;
+
+}
 
 @media (max-width: 480px) {
     header, .footer-container {
