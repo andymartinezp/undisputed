@@ -527,7 +527,7 @@ footer p {
         text-align: center;
     }
     .OutfitsMOGAEj {
-        height: calc(30vh - 50px);
+        height: calc(30vh - 100px);
         position: relative;
         background-size: cover;
         background-position: center;
