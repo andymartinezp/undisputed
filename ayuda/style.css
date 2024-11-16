@@ -600,13 +600,11 @@ footer p {
     }
 }
 
+main {
 
-.productos-conteiner {
-
-padding: 200px;
-
-
+    padding: 20px;
 }
+
 
 
 @media (max-width: 480px) {
