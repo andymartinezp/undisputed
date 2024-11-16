@@ -611,13 +611,19 @@ footer p {
         padding: 10px;
     }
 
-  
+    .info  {
+
+        font-family: 20px;
+
+
+
+    }
 
     
 .info h2 {
 
 
-font-size: 20px;
+font-size: 10px;
 
 
  }
