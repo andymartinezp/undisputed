@@ -701,12 +701,12 @@ footer {
 
 .footer-column {
     flex: 1;
-    margin: 0 60px;
+    margin: 0 40px;
 }
 
 .footer-column h3 {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #000000;
 }
 
@@ -728,4 +728,13 @@ footer {
 
 .footer-column ul li a:hover {
     text-decoration: underline;
+}
+.OutfitsMOGAEj {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 20vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
