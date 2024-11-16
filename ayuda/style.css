@@ -598,11 +598,6 @@ footer p {
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        height: 20vh; 
-    }
     }
     
     .banner h2 {
@@ -628,7 +623,7 @@ footer p {
 .info h2 {
 
 
-font-size: 25px;
+font-size: 10px;
 
 
  }
