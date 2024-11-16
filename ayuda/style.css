@@ -91,9 +91,6 @@ nav ul li a:hover {
     margin-left: 200px;
 }
 
-main {
-   
-}
 
 .banner {
     position: relative;
@@ -279,13 +276,16 @@ main {
 
 .OutfitsMOGAEj {
     position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 75vh;
+    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 75vh; /* Ajusta la altura según necesites */
+    width: 100%; /* Asegura que ocupe todo el ancho */
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
+
 
 .info {
     font-family: Helvetica, sans-serif;
